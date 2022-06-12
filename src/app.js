@@ -3,11 +3,20 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const app = express()
 const pool = require("./db");
+const path=require("path")
 const PORT=process.env.PORT ||5000;
+
+
+
 //middleware
 app.use(cors());
 app.use(express.json())
+app.use(express.static("./client/build"))
 
+if (process.env.NODE_ENV === 'production'){
+  //server static conetent
+  app.use(express.static(path.join(__dirname, "client/build")))
+}
 //routes
 app.get('/register', function(req, res) {
     res.send("It works!");
@@ -101,8 +110,16 @@ app.delete("/food/:id",async(req,res)=>{
 
 })
 
+app.get("*",(req,res)=>{
+  res.sendFile(path.join(__dirname, "client/build/index.html"))
+
+
+})
+
+
+
 app.listen(PORT,()=>{
-    console.log("server start on port 5000")
+    console.log(`server start on port ${PORT}`)
 
 
 })
