@@ -1,0 +1,9 @@
+.foodinput {
+  flex-grow: 1;
+  padding: 10px;
+  outline: none;
+  border: 1px solid green;
+  border-radius: 5px 0 0 5px;
+  background: rgb(222, 243, 225);
+  transition: background 0.25s, box-shadow 0.25s;
+}
