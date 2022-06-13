@@ -9,7 +9,7 @@ const ListFood = () => {
   const deleteFood = async id => {
     try {
       //console.log(id)
-      const deleteFood = await fetch(`http://localhost:5000/food/${id}`, {
+      const deleteFood = await fetch(`/food/${id}`, {
         method: "DELETE"
       });
 
@@ -21,7 +21,7 @@ const ListFood = () => {
 
   const getfood = async () => {
     try {
-      const response = await fetch("http://localhost:5000/food");
+      const response = await fetch("/food");
       const jsonData = await response.json();
 
       setfood(jsonData);

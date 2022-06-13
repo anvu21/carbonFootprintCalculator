@@ -17,4 +17,4 @@ const Food = await pool.query(
             VALUES ($1,$2 ,$3) 
             ON CONFLICT (food) DO NOTHING",
             [name,unit,carbon]
-          );;
+          );

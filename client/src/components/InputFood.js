@@ -14,7 +14,7 @@ setInputs({ ...inputs, [e.target.name]: e.target.value });
     e.preventDefault();
     try {
       const body = { food, unit, carbon };
-      const response = await fetch("http://localhost:5000/food", {
+      const response = await fetch("/food", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body)
