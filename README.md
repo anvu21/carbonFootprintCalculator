@@ -5,6 +5,11 @@ npm run start
 then npm run start inside client
 git push heroku HEAD:master
 
+To COMMIT TO HEROKU:
+heroku login
+git add . 
+git commit -am "e"
+git push heroku main
 When you're done, you can delete the content in this README and update the file with details for others getting started with your repository.
 
 *We recommend that you open this README in another tab as you perform the tasks below. You can [watch our video](https://youtu.be/0ocf7u76WSo) for a full demo of all the steps in this tutorial. Open the video in a new tab to avoid leaving Bitbucket.*
@@ -51,6 +56,8 @@ Now that you're more familiar with your Bitbucket repository, go ahead and add a
 
 
 SQL Section:
+\dt to list all relations 
+\q to quit sql
 heroku pg:psql -a lehigh-fcf (To go into database)
 cat database.sql | heroku pg:psql -a lehigh-fcf (catnate database.sql) into heroku database)
 
