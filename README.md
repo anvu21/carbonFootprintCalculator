@@ -48,3 +48,28 @@ Use these steps to clone from SourceTree, our client for using the repository co
 4. Open the directory you just created to see your repository’s files.
 
 Now that you're more familiar with your Bitbucket repository, go ahead and add a new file locally. You can [push your change back to Bitbucket with SourceTree](https://confluence.atlassian.com/x/iqyBMg), or you can [add, commit,](https://confluence.atlassian.com/x/8QhODQ) and [push from the command line](https://confluence.atlassian.com/x/NQ0zDQ).
+
+
+SQL Section:
+heroku pg:psql -a lehigh-fcf (To go into database)
+cat database.sql | heroku pg:psql -a lehigh-fcf (catnate database.sql) into heroku database)
+
+CREATE DATABASE FCF;
+
+DROP TABLE IF EXISTS food;
+CREATE TABLE "food"(
+    "id" SERIAL PRIMARY KEY,
+    "food" VARCHAR(255) UNIQUE,
+    "unit" VARCHAR(255) NOT NULL,
+    "carbon" decimal NOT NULL
+);
+
+INSERT INTO food (food, unit, carbon) VALUES ('rice' ,'g' ,50 );
+Select * from food;
+
+const Food = await pool.query(
+            "INSERT INTO food (food, unit, carbon) 
+            VALUES ($1,$2 ,$3) 
+            ON CONFLICT (food) DO NOTHING",
+            [name,unit,carbon]
+          );
