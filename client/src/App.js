@@ -10,6 +10,7 @@ function App() {
   return (
     <Fragment>
       <div className="container">
+        <HeaderFooter />
         <InputFood />
         <ListFood />
       </div>

@@ -1,3 +1,11 @@
+.title {
+  padding-top: 2rem;
+  padding-bottom: 1rem;
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 2rem;
+  text-align: center;
+}
+
 .foodinput {
   flex-grow: 1;
   padding: 10px;
@@ -6,4 +14,56 @@
   border-radius: 5px 0 0 5px;
   background: rgb(222, 243, 225);
   transition: background 0.25s, box-shadow 0.25s;
+}
+
+.foodinput:focus {
+  background: white;
+  box-shadow: darkgreen;
+}
+
+.footprintinput {
+  flex-grow: 1;
+  padding: 10px;
+  outline: none;
+  border: 1px solid green;
+  border-radius: 0 0 0 0;
+  background: rgb(222, 243, 225);
+  transition: background 0.25s, box-shadow 0.25s;
+}
+
+.footprintinput:focus {
+  background: white;
+  box-shadow: darkgreen;
+}
+
+/* .searchInpuut::placeholder {
+      color: darkgreen;
+    } */
+/* .trashicon {
+  width: 40px;
+  background: red;
+  color: white;
+  outline: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0 0 0 0;
+  cursor: pointer;
+  user-select: none;
+} */
+
+.addbutton {
+  /* font-family: "Source Sans Pro", sans-serif; */
+  width: 60px;
+  background: green;
+  color: white;
+  outline: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  user-select: none;
 }

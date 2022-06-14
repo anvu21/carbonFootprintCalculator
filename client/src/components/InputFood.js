@@ -1,5 +1,6 @@
 import React, { Fragment, useState } from "react";
 import "./InputFood.css";
+import ListFood from "./ListFood";
 
 const InputFood = () => {
   const [inputs, setInputs] = useState({
@@ -30,7 +31,7 @@ const InputFood = () => {
 
   return (
     <Fragment>
-      <h1 className="text-center mt-5">Food</h1>
+      <h1 className="title">Add Ingredients</h1>
 
       <form className="d-flex mt-5" onSubmit={onSubmitForm}>
         <input
@@ -42,63 +43,20 @@ const InputFood = () => {
           className="foodinput"
         />
         <input
-          type="text"
-          name="unit"
-          value={unit}
-          placeholder="unit"
-          onChange={(e) => onChange(e)}
-          className="form-control my-3"
-        />
-        <input
           type="number"
           name="carbon"
           value={carbon}
-          placeholder="carbon"
+          placeholder="Carbon footprint/kg"
           onChange={(e) => onChange(e)}
-          className="form-control my-3"
+          className="footprintinput"
         />
-        <button className="btn btn-success">Add</button>
+        <button className="addbutton">Add</button>
       </form>
     </Fragment>
   );
 };
 
 export default InputFood;
-
-<div>
-  <form>
-    {formFields.map((form, index) => {
-      return (
-        <div key={index} className="addcontent">
-          {/*<SearchBar
-          placeholder="Ingredient name"
-          data={MOCKDATA}
-          onChange={(event) => handleFormChange(event, index)}
-          value={form.ingredient_name}
-        /> */}
-          <input
-            name="ingredient_name"
-            placeholder="Ingredient name"
-            onChange={(event) => handleFormChange(event, index)}
-            value={form.ingredient_name}
-            className="ingredientinput"
-          ></input>
-          <input
-            name="c_footprint"
-            placeholder="Carbon footprint/kg"
-            onChange={(event) => handleFormChange(event, index)}
-            value={form.c_footprint}
-            className="footprintinput"
-          ></input>
-          <button className="trashicon">
-            <FontAwesomeIcon icon={faTrash} />
-          </button>
-          <button className="submitbuttoning">Submit</button>
-        </div>
-      );
-    })}
-  </form>
-</div>;
 
 /*<input
           type="text"
