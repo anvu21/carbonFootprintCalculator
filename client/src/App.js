@@ -7,6 +7,10 @@ import ListFood from "./components/ListFood";
 import InputRecipe from "./components/InputRecipe";
 import ViewFood from "./components/ViewFood";
 import ViewRecipe from "./components/ViewRecipe";
+
+import Blogs from './pages/blogs';
+
+
 import {
   BrowserRouter as Router,
   Routes,
@@ -24,14 +28,7 @@ function App() {
     //   </div>
     // </Fragment>
     <div>
-      <Router>
-        <Routes>
-          <Route path="/" element={<ViewRecipe />} />
-          <Route path="/addrecipes" element={<InputRecipe />} />
-          <Route path="/viewingredients" element={<ViewFood />} />
-          <Route path="/addingredients" element={<InputFood />} />
-        </Routes>
-      </Router>
+      eeee
     </div>
   );
 }
