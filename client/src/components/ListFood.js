@@ -1,19 +1,18 @@
 import React, { Fragment, useEffect, useState } from "react";
 
-
 const ListFood = () => {
   const [food, setfood] = useState([]);
 
   //delete food function
 
-  const deleteFood = async id => {
+  const deleteFood = async (id) => {
     try {
       //console.log(id)
       const deleteFood = await fetch(`/food/${id}`, {
-        method: "DELETE"
+        method: "DELETE",
       });
 
-      setfood(food.filter(food => food.id !== id));
+      setfood(food.filter((food) => food.id !== id));
     } catch (err) {
       console.error(err.message);
     }
@@ -39,13 +38,11 @@ const ListFood = () => {
   return (
     <Fragment>
       {" "}
-      <table class="table mt-5 text-center">
+      <table class="table mt-3 text-center">
         <thead>
           <tr>
-            <th>Name</th> 
-            <th>Unit</th> 
-            <th>Carbon</th> 
-            <th>Edit</th>
+            <th>Name</th>
+            <th>CO2/kg</th>
             <th>Delete</th>
           </tr>
         </thead>
@@ -55,14 +52,11 @@ const ListFood = () => {
             <td>Doe</td>
             <td>john@example.com</td>
           </tr> */}
-          {food.map(food => (
+          {food.map((food) => (
             <tr key={food.id}>
               <td>{food.food}</td>
-              <td>{food.unit}</td>
+              {/* <td>{food.unit}</td> */}
               <td>{food.carbon}</td>
-              <td>
-             
-              </td>
               <td>
                 <button
                   className="btn btn-danger"
