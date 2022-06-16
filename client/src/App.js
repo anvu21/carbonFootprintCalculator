@@ -1,34 +1,25 @@
-import React, { Fragment } from "react";
-import "./App.css";
-//components
-import HeaderFooter from "./components/HeaderFooter";
-import InputFood from "./components/InputFood";
-import ListFood from "./components/ListFood";
-import InputRecipe from "./components/InputRecipe";
-import ViewFood from "./components/ViewFood";
-import ViewRecipe from "./components/ViewRecipe";
-
+import React from 'react';
+import './App.css';
+import Navbar from './components/Navbar';
+import { BrowserRouter as Router, Routes, Route}
+	from 'react-router-dom';
+  import Home from './pages';
+import About from './pages/about';
 import Blogs from './pages/blogs';
-
-
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  NavLink,
-} from "react-router-dom";
-
+import SignUp from './pages/signup';
+import Showfood from './pages/showfood';
 function App() {
-  return (
-    // <Fragment>
-    //   <div className="container">
-    //     <HeaderFooter />
-    //     <InputFood />
-    //     <ListFood />
-    //   </div>
-    // </Fragment>
-    <div>
-      eeee
-    </div>
-  );
+return (
+	<Router>
+	<Navbar />
+	<Routes>
+       <Route exact path='/' element={<Home />} />
+        <Route path='/about' element={<About/>} />
+        <Route path='/sign-up' element={<SignUp/>} />
+        <Route path='/blogs' element={<Blogs/>} />
+        <Route path='/showfood' element={<Showfood/>} />	</Routes>
+	</Router>
+);
 }
+
+export default App;
