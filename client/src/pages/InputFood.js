@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from "react";
 import "./InputFood.css";
-import ListFood from "./ListFood";
+import ListFood from "../components/ListFood";
 
 const InputFood = () => {
   const [inputs, setInputs] = useState({
@@ -32,8 +32,7 @@ const InputFood = () => {
   return (
     <Fragment>
       <h1 className="title">Add Ingredients</h1>
-
-      <form className="d-flex mt-5" onSubmit={onSubmitForm}>
+      <form className="ingredientinput" onSubmit={onSubmitForm}>
         <input
           type="text"
           name="food"
@@ -46,12 +45,13 @@ const InputFood = () => {
           type="number"
           name="carbon"
           value={carbon}
-          placeholder="Carbon footprint/kg"
+          placeholder="CO2/kg"
           onChange={(e) => onChange(e)}
           className="footprintinput"
         />
         <button className="addbutton">Add</button>
       </form>
+      <ListFood />
     </Fragment>
   );
 };

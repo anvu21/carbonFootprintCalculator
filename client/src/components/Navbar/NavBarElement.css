@@ -1,0 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=Fascinate&family=Kdam+Thmor+Pro&family=Source+Sans+Pro:ital,wght@0,300;1,300&display=swap");
+
+.fcfheader {
+  font-family: "Fascinate", cursive;
+  font-size: 1.9rem;
+  color: black;
+  text-align: center;
+}
+
+.backgroundhead {
+  background-image: linear-gradient(
+    to bottom right,
+    rgb(0, 157, 255),
+    rgb(226, 230, 173)
+  );
+}
