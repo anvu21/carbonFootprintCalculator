@@ -18,7 +18,17 @@ export const NavLink = styled(Link)`
   padding: 0 1rem;
   height: 100%;
   cursor: pointer;
+  &.link {
+    text-decoration: none;
+  }
+  &.visited {
+    text-decoration: none;
+  }
+  &.hover {
+    text-decoration: none;
+  }
   &.active {
+    text-decoration: none;
     color: #4d4dff;
   }
 `;

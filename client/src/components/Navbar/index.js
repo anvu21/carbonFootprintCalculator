@@ -8,16 +8,19 @@ const Navbar = () => {
       <Nav className="backgroundhead">
         <NavMenu>
           <div className="fcfheader">FOOD CARBON FOOTPRINT CALCULATOR</div>
-          <NavLink to="/" activeStyle>
+          <div>
+            <div className="logo"></div>
+          </div>
+          <NavLink to="/" className="links" activeStyle>
             View Recipes
           </NavLink>
-          <NavLink to="/addrecipes" activeStyle>
+          <NavLink to="/addrecipes" className="links" activeStyle>
             Add Recipes
           </NavLink>
-          <NavLink to="/viewingredients" activeStyle>
+          <NavLink to="/viewingredients" className="links" activeStyle>
             View Ingredients
           </NavLink>
-          <NavLink to="/addingredients" activeStyle>
+          <NavLink to="/addingredients" className="links" activeStyle>
             Add Ingredients
           </NavLink>
         </NavMenu>

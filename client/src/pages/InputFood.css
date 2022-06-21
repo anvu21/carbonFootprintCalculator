@@ -5,11 +5,15 @@
   font-size: 2rem;
   text-align: center;
 }
+.inputcontents {
+  text-align: center;
+}
 
 .ingredientinput {
-  display: inline-flex;
+  display: inline-block;
   /* text-align: center; */
   width: 50%;
+  white-space: nowrap;
 }
 
 .foodinput {
@@ -92,8 +96,8 @@
     } */
 
 .addbutton {
-  font-family: "Source Sans Pro", sans-serif;
   width: 60px;
+  height: auto;
   background: green;
   color: white;
   outline: none;
@@ -104,6 +108,7 @@
   border-radius: 0 5px 5px 0;
   cursor: pointer;
   user-select: none;
+  display: inline-block;
 }
 
 .addrecipebutton {
@@ -121,6 +126,12 @@
   user-select: none;
   font-family: "Source Sans Pro", sans-serif;
   font-size: 1rem;
+}
+
+.inputfield {
+  white-space: nowrap;
+  display: flex;
+  /* width: 50%; */
 }
 
 .green {

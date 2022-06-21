@@ -6,7 +6,7 @@
 }
 
 .footer {
-  position: absolute;
+  position: fixed; /* might have to change back to absolute */
   padding: 10px 10px 0px 10px;
   bottom: 0;
   width: 100%;
@@ -14,8 +14,9 @@
   height: 40px;
   text-align: center;
   font-size: 0.75rem;
-  padding-bottom: 2rem;
-  /* background-color: aliceblue; */
+  padding-bottom: 3rem;
+  padding-top: 1rem;
+  background-color: white;
   /*not fully on one side??*/
 }
 

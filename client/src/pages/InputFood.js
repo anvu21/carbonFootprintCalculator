@@ -23,7 +23,7 @@ const InputFood = () => {
       });
       //const parseRespond = await response.json();
       //console.log(parseRespond)
-      window.location = "/";
+      window.location = "/addingredients";
     } catch (err) {
       console.error(err.message);
     }
@@ -32,25 +32,29 @@ const InputFood = () => {
   return (
     <Fragment>
       <h1 className="title">Add Ingredients</h1>
-      <form className="ingredientinput" onSubmit={onSubmitForm}>
-        <input
-          type="text"
-          name="food"
-          value={food}
-          placeholder="Ingredient name"
-          onChange={(e) => onChange(e)}
-          className="foodinput"
-        />
-        <input
-          type="number"
-          name="carbon"
-          value={carbon}
-          placeholder="CO2/kg"
-          onChange={(e) => onChange(e)}
-          className="footprintinput"
-        />
-        <button className="addbutton">Add</button>
-      </form>
+      <div className="inputcontents">
+        <form className="ingredientinput" onSubmit={onSubmitForm}>
+          <div className="inputfield">
+            <input
+              type="text"
+              name="food"
+              value={food}
+              placeholder="Ingredient name"
+              onChange={(e) => onChange(e)}
+              className="foodinput"
+            />
+            <input
+              type="number"
+              name="carbon"
+              value={carbon}
+              placeholder="CO2/kg"
+              onChange={(e) => onChange(e)}
+              className="footprintinput"
+            />
+            <button className="addbutton">Add</button>
+          </div>
+        </form>
+      </div>
       <ListFood />
     </Fragment>
   );
