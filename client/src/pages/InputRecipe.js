@@ -54,7 +54,7 @@ const InputRecipe = () => {
             <input
               type="text"
               name="food"
-              value={food}
+              //value={food}
               placeholder="Ingredient name"
               //onChange={(e) => onChange(e)}
               className="foodinput"
