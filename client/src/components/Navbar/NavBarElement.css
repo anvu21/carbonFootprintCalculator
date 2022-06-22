@@ -1,0 +1,39 @@
+@import url("https://fonts.googleapis.com/css2?family=Fascinate&family=Kdam+Thmor+Pro&family=Source+Sans+Pro:ital,wght@0,300;1,300&display=swap");
+
+.fcfheader {
+  font-family: "Fascinate", cursive;
+  font-size: 1.9rem;
+  color: black;
+  text-align: center;
+}
+
+.backgroundhead {
+  background-image: linear-gradient(
+    to bottom right,
+    rgb(0, 157, 255),
+    rgb(226, 230, 173)
+  );
+}
+
+.links a {
+  font-family: "Source Sans Pro", sans-serif;
+  text-decoration: none;
+  font-size: 1rem;
+  color: rgb(49, 49, 49);
+}
+
+.links a:hover,
+.links a:active,
+.links a.active {
+  color: rgb(204, 204, 204);
+}
+
+.logo {
+  content: url(https://cdn-icons-png.flaticon.com/512/4807/4807630.png);
+  /* content: "../../../../../FCFLOGO.png"; */
+  /* content: "logo.png"; */
+  /* flex: 2; */
+  /* align-items: flex-start; */
+  width: 4rem;
+  height: auto;
+}

@@ -1,0 +1,147 @@
+.title {
+  padding-top: 2rem;
+  padding-bottom: 1rem;
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 2rem;
+  text-align: center;
+}
+.inputcontents {
+  text-align: center;
+}
+
+.ingredientinput {
+  display: inline-block;
+  /* text-align: center; */
+  width: 50%;
+  white-space: nowrap;
+}
+
+.foodinput {
+  flex-grow: 1;
+  padding: 10px;
+  outline: none;
+  border: 1px solid green;
+  border-radius: 5px 0 0 5px;
+  background: rgb(222, 243, 225);
+  transition: background 0.25s, box-shadow 0.25s;
+}
+
+.recipeinput:focus {
+  background: white;
+  box-shadow: darkgreen;
+}
+
+.recipeinput {
+  flex-grow: 1;
+  padding: 10px;
+  outline: none;
+  border: 1px solid green;
+  border-radius: 5px 5px 5px 5px;
+  background: rgb(222, 243, 225);
+  transition: background 0.25s, box-shadow 0.25s;
+}
+
+.foodinput:focus {
+  background: white;
+  box-shadow: darkgreen;
+}
+
+.footprintinput {
+  flex-grow: 1;
+  padding: 10px;
+  outline: none;
+  border: 1px solid green;
+  border-radius: 0 0 0 0;
+  background: rgb(222, 243, 225);
+  transition: background 0.25s, box-shadow 0.25s;
+}
+
+.footprintinput:focus {
+  background: white;
+  box-shadow: darkgreen;
+}
+
+.dropdown {
+  flex-grow: 1;
+  padding: 10px;
+  outline: none;
+  border: 1px solid green;
+  border-radius: 0 0 0 0;
+  background: rgb(222, 243, 225);
+  transition: background 0.25s, box-shadow 0.25s;
+}
+
+.dropdown:focus {
+  background: white;
+  box-shadow: darkgreen;
+}
+
+.quantityinput {
+  flex-grow: 1;
+  padding: 10px;
+  outline: none;
+  border: 1px solid green;
+  border-radius: 0 0 0 0;
+  background: rgb(222, 243, 225);
+  transition: background 0.25s, box-shadow 0.25s;
+}
+
+.quantityinput:focus {
+  background: white;
+  box-shadow: darkgreen;
+}
+
+/* .searchInpuut::placeholder {
+      color: darkgreen;
+    } */
+
+.addbutton {
+  width: 60px;
+  height: auto;
+  background: green;
+  color: white;
+  outline: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  user-select: none;
+  display: inline-block;
+}
+
+.addrecipebutton {
+  width: 60px;
+  height: 30px;
+  background: green;
+  color: white;
+  outline: none;
+  border: none;
+  /* display: flex; */
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px 5px 5px 5px;
+  cursor: pointer;
+  user-select: none;
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 1rem;
+}
+
+.inputfield {
+  white-space: nowrap;
+  display: flex;
+  /* width: 50%; */
+}
+
+.green {
+  color: rgb(47, 168, 47);
+}
+
+.yellow {
+  color: rgb(240, 243, 88);
+}
+
+.red {
+  color: red;
+}

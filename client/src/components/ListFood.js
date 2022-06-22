@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState } from "react";
-
+import "./ListFood.css";
 const ListFood = () => {
   const [food, setfood] = useState([]);
 
@@ -36,27 +36,25 @@ const ListFood = () => {
   console.log(food);
 
   return (
-    <Fragment>
+    <Fragment className="contents">
       {" "}
       <table class="table mt-3 text-center">
+        {" "}
+        {/* change to 4 not 3 */}
         <thead>
           <tr>
             <th>Name</th>
             <th>CO2/kg</th>
+            {/* <th>Density</th> */}
             <th>Delete</th>
           </tr>
         </thead>
         <tbody>
-          {/*<tr>
-            <td>John</td>
-            <td>Doe</td>
-            <td>john@example.com</td>
-          </tr> */}
           {food.map((food) => (
             <tr key={food.id}>
               <td>{food.food}</td>
-              {/* <td>{food.unit}</td> */}
               <td>{food.carbon}</td>
+              {/* <td>{food.density}</td>*/}
               <td>
                 <button
                   className="btn btn-danger"
@@ -72,5 +70,4 @@ const ListFood = () => {
     </Fragment>
   );
 };
-//<EditFood todo={todo} />
 export default ListFood;
