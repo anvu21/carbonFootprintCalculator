@@ -1,6 +1,6 @@
 import React from "react";
 import { Nav, NavLink, NavMenu } from "./NavbarElements";
-import "./NavBarElements.css";
+import "./NavBarElement.css";
 import Footer from "../Footer";
 const Navbar = () => {
   return (

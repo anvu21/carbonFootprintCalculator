@@ -5,17 +5,17 @@ import ListFood from "../components/ListFood";
 const InputFood = () => {
   const [inputs, setInputs] = useState({
     food: "",
-    unit: "",
+    density: "",
     carbon: "",
   });
-  const { food, unit, carbon } = inputs;
+  const { food, density, carbon } = inputs;
   const onChange = (e) =>
     setInputs({ ...inputs, [e.target.name]: e.target.value });
-
+  
   const onSubmitForm = async (e) => {
     e.preventDefault();
     try {
-      const body = { food, unit, carbon };
+      const body = { food, density, carbon };
       const response = await fetch("/food", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -42,6 +42,14 @@ const InputFood = () => {
               placeholder="Ingredient name"
               onChange={(e) => onChange(e)}
               className="foodinput"
+            />
+            <input
+              type="number"
+              name="density"
+              value={density}
+              placeholder="density"
+              onChange={(e) => onChange(e)}
+              className="footprintinput"
             />
             <input
               type="number"

@@ -29,14 +29,14 @@ app.post("/food", async(req,res)=> {
         //cost 
         //const {food} =req.body
         var name= req.body.food
-        var unit= req.body.unit
+        var density= req.body.density
         var carbon = req.body.carbon
-        console.log(name, unit,carbon)
+        console.log(name, density,carbon)
         console.log(req.body)
-        //INSERT INTO food (Food, Unit, Carbon) VALUES (rice,g,50)
+        //INSERT INTO food (Food, density, Carbon) VALUES (rice,g,50)
         const Food = await pool.query(
-            "INSERT INTO food (food, unit, carbon) VALUES ($1,$2 ,$3) ON CONFLICT (food) DO NOTHING Returning *",
-            [name,unit,carbon]
+            "INSERT INTO food (food, density, carbon) VALUES ($1,$2 ,$3) ON CONFLICT (food) DO NOTHING Returning *",
+            [name,density,carbon]
           );
       
           res.json(Food.rows[0]);
