@@ -29,8 +29,9 @@
 }
 
 .logo {
-  content: url(https://cdn-icons-png.flaticon.com/512/4807/4807630.png);
-  /* content: "../../../../../FCFLOGO.png"; */
+  /* content: url(https://cdn-icons-png.flaticon.com/512/4807/4807630.png); */
+
+  content: "../../../public/logo192.png";
   /* content: "logo.png"; */
   /* flex: 2; */
   /* align-items: flex-start; */

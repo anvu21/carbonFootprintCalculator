@@ -30,6 +30,14 @@ function SearchBar({ placeholder, data }) {
   //   const startingList = () => {
   //     setFilteredData(food);
   //   };
+
+  function setFood() {
+    setFilteredData(food);
+  }
+  const handleClick = (event) => {
+    console.log("Hello");
+  };
+
   const handleFilter = (event) => {
     const searchWord = event.target.value;
     const newFilter = data.filter((value) => {
@@ -82,6 +90,7 @@ function SearchBar({ placeholder, data }) {
           </tr>
         </thead>
         <tbody>
+          {setFood()}
           {filteredData.map(
             (
               value // changed to filteredData
