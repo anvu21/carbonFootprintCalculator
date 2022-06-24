@@ -9,7 +9,8 @@ const Navbar = () => {
         <NavMenu>
           <div className="fcfheader">FOOD CARBON FOOTPRINT CALCULATOR</div>
           <div>
-            <div className="logo"></div>
+            {/* <div className="logo"></div> */}
+            <img src="../../../public/logo192.png" className="logo"></img>
           </div>
           <NavLink to="/" className="links" activeStyle>
             View Recipes
