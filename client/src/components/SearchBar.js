@@ -50,9 +50,6 @@ function SearchBar({ placeholder, data }) {
       setFilteredData(food);
     }
   };
-  const handleClick = (event) => {
-    console.log("Hello");
-  };
 
   function carbonCategory(carbon) {
     if (carbon >= 0 && carbon <= 1.16) {
