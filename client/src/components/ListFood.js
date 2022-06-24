@@ -45,7 +45,7 @@ const ListFood = () => {
           <tr>
             <th>Name</th>
             <th>CO2/kg</th>
-            {/* <th>Density</th> */}
+             <th>Density</th> 
             <th>Delete</th>
           </tr>
         </thead>
@@ -54,7 +54,7 @@ const ListFood = () => {
             <tr key={food.id}>
               <td>{food.food}</td>
               <td>{food.carbon}</td>
-              {/* <td>{food.density}</td>*/}
+               <td>{food.density}</td>
               <td>
                 <button
                   className="btn btn-danger"
