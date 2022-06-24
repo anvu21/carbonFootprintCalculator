@@ -31,9 +31,6 @@ function SearchBar({ placeholder, data }) {
   //     setFilteredData(food);
   //   };
 
-  function setFood() {
-    setFilteredData(food);
-  }
   const handleClick = (event) => {
     console.log("Hello");
   };
@@ -87,7 +84,6 @@ function SearchBar({ placeholder, data }) {
           </tr>
         </thead>
         <tbody>
-          {setFood()}
           {filteredData.map(
             (
               value // changed to filteredData
