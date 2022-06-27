@@ -35,15 +35,15 @@ function SearchBar({ placeholder, data }) {
     console.log("Hello");
   };
 
-  const handleFilter = (event) => {
-    const searchWord = event.target.value;
+  const handleFilter = () => {
+    const searchWord = target.value;
     const newFilter = data.filter((value) => {
       // have to change for recipe (won't be ingredient name)
       return value.food.toLowerCase().includes(searchWord.toLowerCase());
     });
-    window.onload = () => {
-      searchWord = "";
-    };
+    // window.onload = () => {
+    //   searchWord = "";
+    // };
     if (searchWord != "" || searchWord != null) {
       setFilteredData(newFilter);
     } else {
@@ -51,18 +51,18 @@ function SearchBar({ placeholder, data }) {
     }
   };
 
-  //   window.onload = viewLoad () {
-  //     const searchWord = event.target.value;
-  //     const newFilter = data.filter((value) => {
-  //       // have to change for recipe (won't be ingredient name)
-  //       return value.food.toLowerCase().includes(searchWord.toLowerCase());
-  //     });
-  //     if (searchWord != "" || searchWord != null) {
-  //       setFilteredData(newFilter);
-  //     } else {
-  //       setFilteredData(food);
-  //     }
-  //   };
+  window.onload = () => {
+    const searchWord = event.target.value;
+    const newFilter = data.filter((value) => {
+      // have to change for recipe (won't be ingredient name)
+      return value.food.toLowerCase().includes(searchWord.toLowerCase());
+    });
+    if (searchWord != "" || searchWord != null) {
+      setFilteredData(newFilter);
+    } else {
+      setFilteredData(food);
+    }
+  };
 
   function carbonCategory(carbon) {
     if (carbon >= 0 && carbon <= 1.16) {
@@ -83,8 +83,9 @@ function SearchBar({ placeholder, data }) {
               className="searchInput"
               type="text"
               placeholder={placeholder}
-              onChange={handleFilter}
-            ></input>
+            >
+              {handleFilter}
+            </input>
             <button className="searchIcon">
               <FontAwesomeIcon icon={faMagnifyingGlass} />
             </button>
