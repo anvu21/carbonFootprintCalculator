@@ -48,7 +48,10 @@ function SearchBar({ placeholder, data }) {
     }
   };
 
-  window.onload = handleFilter;
+  window.onload = function () {
+    setFilteredData(food);
+    handleFilter;
+  };
 
   function carbonCategory(carbon) {
     if (carbon >= 0 && carbon <= 1.16) {
