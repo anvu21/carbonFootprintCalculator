@@ -50,7 +50,7 @@ function SearchBar({ placeholder, data }) {
 
   window.onload = function () {
     setFilteredData(food);
-    handleFilter;
+    return handleFilter;
   };
 
   function carbonCategory(carbon) {
