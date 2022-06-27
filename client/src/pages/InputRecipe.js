@@ -72,6 +72,9 @@ const InputRecipe = () => {
               <option>oz</option>
               <option>lbs</option>
               <option>kg</option>
+              <option>tsp</option>
+              <option>tbsp</option>
+              <option>cups</option>
             </select>
             <button
               className="addbutton"

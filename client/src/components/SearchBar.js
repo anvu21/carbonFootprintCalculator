@@ -41,12 +41,14 @@ function SearchBar({ placeholder, data }) {
       // have to change for recipe (won't be ingredient name)
       return value.food.toLowerCase().includes(searchWord.toLowerCase());
     });
-    if (searchWord != "" || searchWord) {
+    if (searchWord != "" || searchWord != null) {
       setFilteredData(newFilter);
     } else {
       setFilteredData(food);
     }
   };
+
+  window.onload = handleFilter;
 
   function carbonCategory(carbon) {
     if (carbon >= 0 && carbon <= 1.16) {

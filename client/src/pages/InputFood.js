@@ -11,7 +11,7 @@ const InputFood = () => {
   const { food, density, carbon } = inputs;
   const onChange = (e) =>
     setInputs({ ...inputs, [e.target.name]: e.target.value });
-  
+
   const onSubmitForm = async (e) => {
     e.preventDefault();
     try {
@@ -47,7 +47,7 @@ const InputFood = () => {
               type="number"
               name="density"
               value={density}
-              placeholder="density"
+              placeholder="Density"
               onChange={(e) => onChange(e)}
               className="footprintinput"
             />
