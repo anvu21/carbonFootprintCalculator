@@ -26,43 +26,20 @@ function SearchBar({ placeholder, data }) {
     getfood();
   }, []);
 
-  const [filteredData, setFilteredData] = useState([]);
-  //   const startingList = () => {
-  //     setFilteredData(food);
+  //   const [filteredData, setFilteredData] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  //   const handleFilter = (event) => {
+  //     const searchWord = event.target.value;
+  //     const newFilter = data.filter((value) => {
+  //       // have to change for recipe (won't be ingredient name)
+  //       return value.food.toLowerCase().includes(searchWord.toLowerCase());
+  //     });
+  //     if (searchWord != "" || searchWord != null) {
+  //       setFilteredData(newFilter);
+  //     } else {
+  //       setFilteredData(food);
+  //     }
   //   };
-
-  const handleClick = (event) => {
-    console.log("Hello");
-  };
-
-  const handleFilter = () => {
-    const searchWord = target.value;
-    const newFilter = data.filter((value) => {
-      // have to change for recipe (won't be ingredient name)
-      return value.food.toLowerCase().includes(searchWord.toLowerCase());
-    });
-    // window.onload = () => {
-    //   searchWord = "";
-    // };
-    if (searchWord != "" || searchWord != null) {
-      setFilteredData(newFilter);
-    } else {
-      setFilteredData(food);
-    }
-  };
-
-  window.onload = () => {
-    const searchWord = event.target.value;
-    const newFilter = data.filter((value) => {
-      // have to change for recipe (won't be ingredient name)
-      return value.food.toLowerCase().includes(searchWord.toLowerCase());
-    });
-    if (searchWord != "" || searchWord != null) {
-      setFilteredData(newFilter);
-    } else {
-      setFilteredData(food);
-    }
-  };
 
   function carbonCategory(carbon) {
     if (carbon >= 0 && carbon <= 1.16) {
@@ -83,9 +60,11 @@ function SearchBar({ placeholder, data }) {
               className="searchInput"
               type="text"
               placeholder={placeholder}
-            >
-              {handleFilter}
-            </input>
+              //   onChange={handleFilter}
+              onChange={(event) => {
+                setSearchTerm(event.target.value);
+              }}
+            ></input>
             <button className="searchIcon">
               <FontAwesomeIcon icon={faMagnifyingGlass} />
             </button>
@@ -101,42 +80,29 @@ function SearchBar({ placeholder, data }) {
           </tr>
         </thead>
         <tbody>
-          {filteredData.map(
-            (
-              value // changed to filteredData
-            ) => (
-              <tr key={value.id}>
-                <td>{value.food}</td>
-                <td>{value.carbon}</td>
-                <td>{carbonCategory(value.carbon)}</td>
-              </tr>
-            )
-          )}
+          {food
+            .filter((value) => {
+              if (searchTerm == "") {
+                return value;
+              } else if (
+                value.food.toLowerCase().includes(searchTerm.toLowerCase())
+              ) {
+                return value;
+              }
+            })
+            .map(
+              (
+                value // changed to filteredData
+              ) => (
+                <tr key={value.id}>
+                  <td>{value.food}</td>
+                  <td>{value.carbon}</td>
+                  <td>{carbonCategory(value.carbon)}</td>
+                </tr>
+              )
+            )}
         </tbody>
       </table>
-      {/* {filteredData.length !== 0 && (
-        <div>
-          {filteredData.map((value, key) => {
-            return (
-              <table class="table mt-3 text-center">
-                <tbody>
-                  {filteredData.map(
-                    (
-                      value // changed to filteredData
-                    ) => (
-                      <tr key={value.id}>
-                        <td>{value.food}</td>
-                        <td>{value.carbon}</td>
-                        <td>{carbonCategory(value.carbon)}</td>
-                      </tr>
-                    )
-                  )}
-                </tbody>
-              </table>
-            );
-          })}
-        </div>
-      )} */}
     </div>
   );
 }
