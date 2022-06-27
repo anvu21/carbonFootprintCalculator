@@ -45,17 +45,17 @@ const InputFood = () => {
             />
             <input
               type="number"
-              name="density"
-              value={density}
-              placeholder="Density"
+              name="carbon"
+              value={carbon}
+              placeholder="CO2/kg"
               onChange={(e) => onChange(e)}
               className="footprintinput"
             />
             <input
               type="number"
-              name="carbon"
-              value={carbon}
-              placeholder="CO2/kg"
+              name="density"
+              value={density}
+              placeholder="Density"
               onChange={(e) => onChange(e)}
               className="footprintinput"
             />

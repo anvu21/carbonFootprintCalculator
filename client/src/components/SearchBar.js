@@ -41,6 +41,9 @@ function SearchBar({ placeholder, data }) {
       // have to change for recipe (won't be ingredient name)
       return value.food.toLowerCase().includes(searchWord.toLowerCase());
     });
+    window.onload = () => {
+      searchWord = "";
+    };
     if (searchWord != "" || searchWord != null) {
       setFilteredData(newFilter);
     } else {
@@ -48,10 +51,18 @@ function SearchBar({ placeholder, data }) {
     }
   };
 
-  window.onload = function () {
-    setFilteredData(food);
-    return handleFilter;
-  };
+  //   window.onload = viewLoad () {
+  //     const searchWord = event.target.value;
+  //     const newFilter = data.filter((value) => {
+  //       // have to change for recipe (won't be ingredient name)
+  //       return value.food.toLowerCase().includes(searchWord.toLowerCase());
+  //     });
+  //     if (searchWord != "" || searchWord != null) {
+  //       setFilteredData(newFilter);
+  //     } else {
+  //       setFilteredData(food);
+  //     }
+  //   };
 
   function carbonCategory(carbon) {
     if (carbon >= 0 && carbon <= 1.16) {
