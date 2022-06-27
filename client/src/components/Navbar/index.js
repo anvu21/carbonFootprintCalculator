@@ -10,7 +10,7 @@ const Navbar = () => {
           <div className="fcfheader">FOOD CARBON FOOTPRINT CALCULATOR</div>
           <div>
             {/* <div className="logo"></div> */}
-            <img src="./FCFLOGO.png" className="logo"></img>
+            <img className="logo" alt="" src={"./FCFLOGO.png"} />
           </div>
           <NavLink to="/" className="links" activeStyle>
             View Recipes
