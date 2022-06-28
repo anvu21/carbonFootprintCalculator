@@ -10,30 +10,30 @@ export const Nav = styled.nav`
   z-index: 12;
 `;
 
-export const NavLink = styled(Link)`
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  padding: 0 1rem;
-  height: 100%;
-  cursor: pointer;
-  &.link {
-    color: #ffffff;
-    text-decoration: none;
-  }
-  &.visited {
-    color: #ffffff;
-    text-decoration: none;
-  }
-  &.hover {
-    color: #d3d3d3;
-    text-decoration: none;
-  }
-  &.active {
-    color: #d3d3d3;
-    text-decoration: none;
-  }
-`;
+// export const NavLink = styled(Link)`
+//   display: flex;
+//   align-items: center;
+//   text-decoration: none;
+//   padding: 0 1rem;
+//   height: 100%;
+//   cursor: pointer;
+//   &.link {
+//     color: #a9a9a9;
+//     text-decoration: none;
+//   }
+//   &.visited {
+//     color: #a9a9a9;
+//     text-decoration: none;
+//   }
+//   &.hover {
+//     color: #000000;
+//     text-decoration: none;
+//   }
+//   &.active {
+//     color: #000000;
+//     text-decoration: none;
+//   }
+// `;
 
 export const Bars = styled(FaBars)`
   display: none;
