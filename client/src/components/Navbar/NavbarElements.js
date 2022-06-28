@@ -11,7 +11,6 @@ export const Nav = styled.nav`
 `;
 
 export const NavLink = styled(Link)`
-  color: #808080;
   display: flex;
   align-items: center;
   text-decoration: none;
@@ -19,17 +18,20 @@ export const NavLink = styled(Link)`
   height: 100%;
   cursor: pointer;
   &.link {
+    color: #ffffff;
     text-decoration: none;
   }
   &.visited {
+    color: #ffffff;
     text-decoration: none;
   }
   &.hover {
+    color: #d3d3d3;
     text-decoration: none;
   }
   &.active {
+    color: #d3d3d3;
     text-decoration: none;
-    color: #4d4dff;
   }
 `;
 
