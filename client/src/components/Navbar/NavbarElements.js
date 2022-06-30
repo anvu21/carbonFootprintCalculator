@@ -6,34 +6,42 @@ export const Nav = styled.nav`
   height: 85px;
   display: flex;
   justify-content: space-between;
-  padding: 0.2rem calc((100vw - 1000px) / 2);
+  padding: 2rem;
   z-index: 12;
 `;
-
+// padding: 0.2rem calc((100vw - 1000px) / 2);
+// padding: 0 1rem;
 export const NavLink = styled(Link)`
   display: flex;
   align-items: center;
-  text-decoration: none;
-  padding: 0 1rem;
+  padding: 0 1.5rem;
   height: 100%;
   cursor: pointer;
-  &.link {
-    color: #a9a9a9;
+  text-decoration: none;
+
+  &:visited,
+  &:link {
+    color: #edf5e1;
     text-decoration: none;
   }
-  &.visited {
-    color: #a9a9a9;
-    text-decoration: none;
-  }
-  &.hover {
-    color: #000000;
-    text-decoration: none;
-  }
+
+  &:hover,
+  &:active,
   &.active {
     color: #000000;
-    text-decoration: none;
   }
 `;
+// &:visited,
+// &:link {
+//   color: #ffffff;
+//   text-decoration: none;
+// }
+// &:hover,
+// &:link,
+// &:focus,
+// &:active {
+//   color: #000000;
+// }
 
 export const Bars = styled(FaBars)`
   display: none;
@@ -62,3 +70,22 @@ white-space: nowrap; */
     display: none;
   }
 `;
+
+// export const NavTitle = styled.div`
+//   display: flex;
+//   align-items: center;
+//   margin-right: -24px;
+//   /* Second Nav */
+//   /* margin-right: 24px; */
+//   /* Third Nav */
+//   /* width: 100vw;
+// white-space: nowrap; */
+//   @media screen and (max-width: 768px) {
+//     display: none;
+//   }
+// `;
+
+// font-size: 1.9rem;
+// color: black;
+// text-align: center;
+// display: flex;

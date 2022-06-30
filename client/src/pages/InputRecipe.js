@@ -3,40 +3,54 @@ import "./InputFood.css";
 import ListFood from "../components/ListFood";
 
 const InputRecipe = () => {
-  // start of backend for food
-  //   const [inputs, setInputs] = useState({
-  //     food: "",
-  //     unit: "",
-  //     carbon: "",
-  //   });
-  //   const { food, unit, carbon } = inputs;
-  //   const onChange = (e) =>
-  //     setInputs({ ...inputs, [e.target.name]: e.target.value });
+  // start of: things im testing for + form
+  // const [formFields, setFormFields] = useState([
+  //   { food: "", quantity: "", uom: "" },
+  // ]);
 
-  //   const onSubmitForm = async (e) => {
-  //     e.preventDefault();
-  //     try {
-  //       const body = { food, unit, carbon };
-  //       const response = await fetch("/food", {
-  //         method: "POST",
-  //         headers: { "Content-Type": "application/json" },
-  //         body: JSON.stringify(body),
-  //       });
-  //       //const parseRespond = await response.json();
-  //       //console.log(parseRespond)
-  //       window.location = "/addingredients";
-  //     } catch (err) {
-  //       console.error(err.message);
-  //     }
+  // const addFields = () => {
+  //   let object = {
+  //     food: "",
+  //     quantity: "",
+  //     uom: "",
   //   };
-  // const handleAddFields = () => {
-  //   setInputFieldss([...inputFields, { food: "", quantity: "" }]);
+  //   setFormFields([...formFields, object]);
   // };
-  // end of backend for food
+
+  const [inputFields, setInputFields] = useState([
+    { food: "", quantity: "", uom: "" },
+  ]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("InputFields", inputFields);
+  };
+
+  const handleChangeInput = (index, event) => {
+    const values = [...inputFields];
+    values[index][event.target.name] = event.target.value;
+    setInputFields(values);
+  };
+  // end of: things im testing for + form
+
+  const handleAddFields = () => {
+    // event.preventDefault();
+    setInputFields([...inputFields, { food: "", quantity: "", uom: "" }]);
+  };
+
+  const handleRemoveFields = (index) => {
+    // event.preventDefault();
+    // setInputFields([...inputFields, { food: "", quantity: "", uom: "" }]);
+    const values = [...inputFields];
+    values.splice(index, 1);
+    setInputFields(values);
+  };
+
   return (
     <Fragment>
       <h1 className="title">Add Recipes</h1>
-      <form>
+
+      <form onSubmit={handleSubmit}>
         {/* onSubmit={onSubmitForm}   */}
         <div>
           <input
@@ -50,7 +64,61 @@ const InputRecipe = () => {
         </div>
 
         <form className="ingredientinput">
-          <div className="inputfield">
+          {inputFields.map((inputFields, index) => (
+            <div key={index}>
+              <div className="inputfield">
+                <input
+                  type="text"
+                  name="food"
+                  //value={food}
+                  placeholder="Ingredient name"
+                  //onChange={(e) => onChange(e)}
+                  value={inputFields.food}
+                  className="foodinput"
+                  onChange={(event) => handleChangeInput(index, event)}
+                />
+                <input
+                  type="number"
+                  name="quantity"
+                  //value={quantity}
+                  placeholder="Quantity"
+                  //onChange={(e) => onChange(e)}
+                  value={inputFields.quantity}
+                  className="quantityinput"
+                  onChange={(event) => handleChangeInput(index, event)}
+                />
+                {/* <select className="dropdown">
+              <option>g</option>
+              <option>oz</option>
+              <option>lbs</option>
+              <option>kg</option>
+              <option>tsp</option>
+              <option>tbsp</option>
+              <option>cups</option>
+            </select> */}
+                <input
+                  type="text"
+                  name="uom"
+                  //value={uom}
+                  placeholder="UOM"
+                  //onChange={(e) => onChange(e)}
+                  value={inputFields.uom}
+                  className="uominput"
+                  onChange={(event) => handleChangeInput(index, event)}
+                />
+                <div
+                  className="removebutton"
+                  onClick={() => handleRemoveFields(index)}
+                >
+                  -
+                </div>
+                <div className="addbutton" onClick={() => handleAddFields()}>
+                  +
+                </div>
+              </div>
+            </div>
+          ))}
+          {/* <div className="inputfield">
             <input
               type="text"
               name="food"
@@ -75,17 +143,27 @@ const InputRecipe = () => {
               <option>tsp</option>
               <option>tbsp</option>
               <option>cups</option>
-            </select>
-            <button
-              className="addbutton"
-              // onClick={handleAddFields}
-            >
-              +
-            </button>
-          </div>
+            </select> 
+            <input
+              type="number"
+              name="uom"
+              //value={quantity}
+              placeholder="UOM"
+              //onChange={(e) => onChange(e)}
+              className="uominput"
+            />
+            <button className="removebutton">-</button>
+            <button className="addbutton">+</button>
+          </div> */}
         </form>
         <div>
-          <button className="addrecipebutton">Add</button>
+          <button
+            className="addrecipebutton"
+            type="submit"
+            onClick={handleSubmit}
+          >
+            Add
+          </button>
         </div>
       </form>
       <ListFood />

@@ -91,9 +91,39 @@
   box-shadow: darkgreen;
 }
 
+.uominput {
+  flex-grow: 1;
+  padding: 10px;
+  outline: none;
+  border: 1px solid green;
+  border-radius: 0 0 0 0;
+  background: rgb(222, 243, 225);
+  transition: background 0.25s, box-shadow 0.25s;
+}
+
+.uominput:focus {
+  background: white;
+  box-shadow: darkgreen;
+}
+
 /* .searchInpuut::placeholder {
       color: darkgreen;
     } */
+.removebutton {
+  width: 60px;
+  height: auto;
+  background: red;
+  color: white;
+  outline: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0 0 0 0;
+  cursor: pointer;
+  user-select: none;
+  display: inline-block;
+}
 
 .addbutton {
   width: 60px;

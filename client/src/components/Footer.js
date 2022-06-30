@@ -12,6 +12,7 @@ function Footer() {
       <a
         href="https://creativeinquiry.lehigh.edu/mountaintop-programs/campus-sustainable-impact-fellowship"
         className="csiflink"
+        style={{ textDecoration: "none" }}
       >
         Campus Sustainable Impact Fellowship
       </a>
