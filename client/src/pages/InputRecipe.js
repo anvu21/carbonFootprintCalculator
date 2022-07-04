@@ -62,7 +62,7 @@ const InputRecipe = () => {
             className="recipeinput"
           />
         </div>
-
+        <div className="space"></div>
         <form className="ingredientinput">
           {inputFields.map((inputFields, index) => (
             <div key={index}>
@@ -116,6 +116,7 @@ const InputRecipe = () => {
                   +
                 </div>
               </div>
+              <div className="space"></div>
             </div>
           ))}
           {/* <div className="inputfield">
@@ -156,6 +157,7 @@ const InputRecipe = () => {
             <button className="addbutton">+</button>
           </div> */}
         </form>
+
         <div>
           <button
             className="addrecipebutton"

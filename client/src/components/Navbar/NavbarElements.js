@@ -71,19 +71,26 @@ white-space: nowrap; */
   }
 `;
 
-// export const NavTitle = styled.div`
-//   display: flex;
-//   align-items: center;
-//   margin-right: -24px;
-//   /* Second Nav */
-//   /* margin-right: 24px; */
-//   /* Third Nav */
-//   /* width: 100vw;
-// white-space: nowrap; */
-//   @media screen and (max-width: 768px) {
-//     display: none;
-//   }
-// `;
+export const NavTitle = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 0 1.5rem;
+  height: 100%;
+  cursor: pointer;
+  text-decoration: none;
+`;
+
+// display: flex;
+// align-items: center;
+// margin-right: -24px;
+/* Second Nav */
+/* margin-right: 24px; */
+/* Third Nav */
+/* width: 100vw;
+white-space: nowrap; */
+// @media screen and (max-width: 768px) {
+//   display: none;
+// }
 
 // font-size: 1.9rem;
 // color: black;

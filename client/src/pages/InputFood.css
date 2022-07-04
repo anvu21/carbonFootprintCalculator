@@ -1,6 +1,6 @@
 .title {
   padding-top: 2rem;
-  padding-bottom: 1rem;
+  padding-bottom: 0.2rem;
   font-family: "Source Sans Pro", sans-serif;
   font-size: 2rem;
   text-align: center;
@@ -39,6 +39,12 @@
   border-radius: 5px 5px 5px 5px;
   background: rgb(222, 243, 225);
   transition: background 0.25s, box-shadow 0.25s;
+  font-size: 1.2rem;
+  font-style: italic;
+}
+
+.space {
+  height: 1rem;
 }
 
 .foodinput:focus {
