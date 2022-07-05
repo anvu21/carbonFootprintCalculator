@@ -71,14 +71,14 @@ white-space: nowrap; */
   }
 `;
 
-export const NavTitle = styled.div`
-  display: flex;
-  align-items: center;
-  padding: 0 1.5rem;
-  height: 100%;
-  cursor: pointer;
-  text-decoration: none;
-`;
+// export const NavTitle = styled.div`
+//   display: flex;
+//   align-items: center;
+//   padding: 0 1.5rem;
+//   height: 100%;
+//   cursor: pointer;
+//   text-decoration: none;
+// `;
 
 // display: flex;
 // align-items: center;
