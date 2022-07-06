@@ -1,25 +1,10 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import "./InputFood.css";
 import ListFood from "../components/ListFood";
 import SearchableDropdown from "../components/SearchableDropdown";
 //import SearchableDropdown from "../components/SearchableDropdown";
 
 const InputRecipe = () => {
-  // start of: things im testing for + form
-  // const [formFields, setFormFields] = useState([
-  //   { food: "", quantity: "", uom: "" },
-  // ]);
-
-  // const addFields = () => {
-  //   let object = {
-  //     food: "",
-  //     quantity: "",
-  //     uom: "",
-  //   };
-  //   setFormFields([...formFields, object]);
-  // };
-  // const [recipeField, setRecipeFields] = useState([{ recipe: "" }]);
-
   const [inputFields, setInputFields] = useState([
     { recipe: "", food: "", quantity: "", uom: "" },
   ]);
@@ -38,14 +23,6 @@ const InputRecipe = () => {
     values[index][event.target.name] = event.target.value;
     setInputFields(values);
   };
-
-  // const handleRecipeChangeInput = (event) => {
-  //   const recipe = event.target.value;
-  //   setRecipeFields(recipe);
-  //   console.log(event.target.value);
-  // };
-
-  // end of: things im testing for + form
   const handleAddFields = () => {
     setInputFields([
       ...inputFields,
@@ -54,12 +31,33 @@ const InputRecipe = () => {
   };
 
   const handleRemoveFields = (index) => {
-    // event.preventDefault();
     const values = [...inputFields];
     values.splice(index, 1);
     setInputFields(values);
   };
 
+  // start of food backend
+
+  const [food, setfood] = useState([]);
+
+  const getfood = async () => {
+    try {
+      const response = await fetch("/food");
+      const jsonData = await response.json();
+
+      setfood(jsonData);
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
+
+  useEffect(() => {
+    getfood();
+  }, []);
+
+  // end of food backend
+
+  const [searchTerm, setSearchTerm] = useState("");
   return (
     <Fragment>
       <h1 className="title">Add Recipes</h1>
@@ -91,12 +89,46 @@ const InputRecipe = () => {
                     //onChange={(e) => onChange(e)}
                     value={inputFields.food}
                     className="foodinput"
-                    onChange={(event) => handleChangeInput(index, event)}
+                    // onChange={(event) => handleChangeInput(index, event)}
+                    onChange={(event) => {
+                      setSearchTerm(event.target.value);
+                    }}
                   />
-                  <SearchableDropdown
+                  <div>
+                    {food
+                      .filter((value) => {
+                        if (searchTerm == "") {
+                          return value;
+                        } else if (
+                          value.food
+                            .toLowerCase()
+                            .includes(searchTerm.toLowerCase())
+                        ) {
+                          return value;
+                        }
+                      })
+                      .map(
+                        (
+                          value // changed to filteredData
+                        ) => (
+                          <tr key={value.id}>
+                            <td
+                              onClick={(event) =>
+                                handleChangeInput(index, event)
+                              }
+                            >
+                              {value.food}
+                            </td>
+                            {/* <td>{value.carbon}</td>
+                  <td>{carbonCategory(value.carbon)}</td> */}
+                          </tr>
+                        )
+                      )}
+                  </div>
+                  {/* <SearchableDropdown
                     placeholder="Ingredient name"
                     // onClick={(event) => handleChangeInput(index, event)}
-                  />
+                  /> */}
                   <input
                     type="number"
                     name="quantity"
@@ -106,17 +138,7 @@ const InputRecipe = () => {
                     value={inputFields.quantity}
                     className="quantityinput"
                     onChange={(event) => handleChangeInput(index, event)}
-                  />
-                  {/* <select className="dropdown">
-              <option>g</option>
-              <option>oz</option>
-              <option>lbs</option>
-              <option>kg</option>
-              <option>tsp</option>
-              <option>tbsp</option>
-              <option>cups</option>
-            </select> */}
-
+                  />{" "}
                   <select
                     value={uom}
                     name="uom"
@@ -131,7 +153,6 @@ const InputRecipe = () => {
                     <option value="tbsp">tbsp</option>
                     <option value="cups">cups</option>
                   </select>
-
                   <div
                     className="removebutton"
                     onClick={() => handleRemoveFields(index)}
@@ -145,19 +166,7 @@ const InputRecipe = () => {
                 <div className="space"></div>
               </div>
             ))}
-            {/* 
-            <select className="dropdown">
-              <option>g</option>
-              <option>oz</option>
-              <option>lbs</option>
-              <option>kg</option>
-              <option>tsp</option>
-              <option>tbsp</option>
-              <option>cups</option>
-            </select> 
-*/}
           </form>
-
           <div>
             <button
               className="addrecipebutton"
