@@ -1,6 +1,8 @@
 import React, { Fragment, useState } from "react";
 import "./InputFood.css";
 import ListFood from "../components/ListFood";
+import SearchableDropdown from "../components/SearchableDropdown";
+//import SearchableDropdown from "../components/SearchableDropdown";
 
 const InputRecipe = () => {
   // start of: things im testing for + form
@@ -21,18 +23,7 @@ const InputRecipe = () => {
   const [inputFields, setInputFields] = useState([
     { recipe: "", food: "", quantity: "", uom: "" },
   ]);
-  const { recipe, foood,quantity,uom } = inputFields;
-
-  // const [recipeField, setRecipeFields] = useState([{ recipe: "" }]);
-
-  // const handleRecipeChangeInput = (index, event) => {
-  //   const values = [...recipeField];
-  //   values[index][event.target.name] = event.target.value;
-  //   setInputFields(values);
-  // };
-  // const [allInputFields, setAllInputFields] = useState([
-  //   { recipe: "", food: "", quantity: "", uom: "" },
-  // ]);
+  const { recipe, foood, quantity, uom } = inputFields;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -102,6 +93,10 @@ const InputRecipe = () => {
                     className="foodinput"
                     onChange={(event) => handleChangeInput(index, event)}
                   />
+                  <SearchableDropdown
+                    placeholder="Ingredient name"
+                    // onClick={(event) => handleChangeInput(index, event)}
+                  />
                   <input
                     type="number"
                     name="quantity"
@@ -122,16 +117,21 @@ const InputRecipe = () => {
               <option>cups</option>
             </select> */}
 
-<select value={uom} name="uom" onChange={(event) => handleChangeInput(index, event)} className="uominput">
-            <option value="kg">kg</option>
-            <option value="lbs">lbs</option>
-            <option value="oz">oz</option>
-            <option value="g">g</option>
-            <option value="tsp">tsp</option>
-            <option value="tbsp">tbsp</option>
-            <option value="cups">cups</option>
-        </select>
-                  
+                  <select
+                    value={uom}
+                    name="uom"
+                    onChange={(event) => handleChangeInput(index, event)}
+                    className="uominput"
+                  >
+                    <option value="kg">kg</option>
+                    <option value="lbs">lbs</option>
+                    <option value="oz">oz</option>
+                    <option value="g">g</option>
+                    <option value="tsp">tsp</option>
+                    <option value="tbsp">tbsp</option>
+                    <option value="cups">cups</option>
+                  </select>
+
                   <div
                     className="removebutton"
                     onClick={() => handleRemoveFields(index)}
