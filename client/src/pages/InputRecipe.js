@@ -21,6 +21,8 @@ const InputRecipe = () => {
   const [inputFields, setInputFields] = useState([
     { recipe: "", food: "", quantity: "", uom: "" },
   ]);
+  const { recipe, foood,quantity,uom } = inputFields;
+
   // const [recipeField, setRecipeFields] = useState([{ recipe: "" }]);
 
   // const handleRecipeChangeInput = (index, event) => {
@@ -119,16 +121,17 @@ const InputRecipe = () => {
               <option>tbsp</option>
               <option>cups</option>
             </select> */}
-                  <input
-                    type="text"
-                    name="uom"
-                    //value={uom}
-                    placeholder="UOM"
-                    //onChange={(e) => onChange(e)}
-                    value={inputFields.uom}
-                    className="uominput"
-                    onChange={(event) => handleChangeInput(index, event)}
-                  />
+
+<select value={uom} name="uom" onChange={(event) => handleChangeInput(index, event)} className="uominput">
+            <option value="kg">kg</option>
+            <option value="lbs">lbs</option>
+            <option value="oz">oz</option>
+            <option value="g">g</option>
+            <option value="tsp">tsp</option>
+            <option value="tbsp">tbsp</option>
+            <option value="cups">cups</option>
+        </select>
+                  
                   <div
                     className="removebutton"
                     onClick={() => handleRemoveFields(index)}
