@@ -101,7 +101,16 @@ const InputRecipe = () => {
                     </div>
                     <div className={`options ${open ? "open" : null} `}>
                       {food.map((value) => (
-                        <div className="option">{value.food}</div>
+                        <div
+                          className="option"
+                          value={inputFields.quantity}
+                          onClick={(event) => {
+                            handleChangeInput(index, event);
+                            setOpen(false);
+                          }}
+                        >
+                          {value.food}
+                        </div>
                       ))}
                     </div>
                   </div>
