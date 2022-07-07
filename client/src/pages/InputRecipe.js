@@ -1,8 +1,7 @@
 import React, { Fragment, useState, useEffect } from "react";
 import "./InputFood.css";
 import ListFood from "../components/ListFood";
-import SearchableDropdown from "../components/SearchableDropdown";
-//import SearchableDropdown from "../components/SearchableDropdown";
+import "./InputRecipe.css";
 
 const InputRecipe = () => {
   const [inputFields, setInputFields] = useState([
@@ -63,7 +62,6 @@ const InputRecipe = () => {
       <h1 className="title">Add Recipes</h1>
 
       <form onSubmit={handleSubmit}>
-        {/* {recipeField.map((recipeField, index) => ( */}
         <>
           <div>
             <input
@@ -71,7 +69,6 @@ const InputRecipe = () => {
               name="recipe"
               value={inputFields.recipe}
               placeholder="Recipe name"
-              //onChange={(e) => onChange(e)}
               className="recipeinput"
               onChange={(event) => handleChangeInput(0, event)}
             />
@@ -89,46 +86,19 @@ const InputRecipe = () => {
                     //onChange={(e) => onChange(e)}
                     value={inputFields.food}
                     className="foodinput"
-                    // onChange={(event) => handleChangeInput(index, event)}
-                    onChange={(event) => {
-                      setSearchTerm(event.target.value);
-                    }}
+                    onChange={(event) => handleChangeInput(index, event)}
                   />
-                  <div>
-                    {food
-                      .filter((value) => {
-                        if (searchTerm == "") {
-                          return value;
-                        } else if (
-                          value.food
-                            .toLowerCase()
-                            .includes(searchTerm.toLowerCase())
-                        ) {
-                          return value;
-                        }
-                      })
-                      .map(
-                        (
-                          value // changed to filteredData
-                        ) => (
-                          <tr key={value.id}>
-                            <td
-                              onClick={(event) =>
-                                handleChangeInput(index, event)
-                              }
-                            >
-                              {value.food}
-                            </td>
-                            {/* <td>{value.carbon}</td>
-                  <td>{carbonCategory(value.carbon)}</td> */}
-                          </tr>
-                        )
-                      )}
-                  </div>
-                  {/* <SearchableDropdown
-                    placeholder="Ingredient name"
-                    // onClick={(event) => handleChangeInput(index, event)}
-                  /> */}
+                  {/* <div className="dropdown">
+                    <div className="control">
+                      <div className="selected-value">Select ingredient...</div>
+                      <div className="arrow"></div>
+                    </div>
+                    <div className="options">
+                      {food.map((food) => (
+                        <div className="option">{food.name}</div>
+                      ))}
+                    </div>
+                  </div> */}
                   <input
                     type="number"
                     name="quantity"
@@ -138,7 +108,7 @@ const InputRecipe = () => {
                     value={inputFields.quantity}
                     className="quantityinput"
                     onChange={(event) => handleChangeInput(index, event)}
-                  />{" "}
+                  />
                   <select
                     value={uom}
                     name="uom"
