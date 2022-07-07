@@ -56,7 +56,10 @@ const InputRecipe = () => {
 
   // end of food backend
 
-  const [searchTerm, setSearchTerm] = useState("");
+  // testing for ingredient look up
+
+  const [open, setOpen] = useState(false);
+
   return (
     <Fragment>
       <h1 className="title">Add Recipes</h1>
@@ -78,7 +81,7 @@ const InputRecipe = () => {
             {inputFields.map((inputFields, index) => (
               <div key={index}>
                 <div className="inputfield">
-                  <input
+                  {/* <input
                     type="text"
                     name="food"
                     //value={food}
@@ -87,18 +90,21 @@ const InputRecipe = () => {
                     value={inputFields.food}
                     className="foodinput"
                     onChange={(event) => handleChangeInput(index, event)}
-                  />
-                  {/* <div className="dropdown">
-                    <div className="control">
-                      <div className="selected-value">Select ingredient...</div>
-                      <div className="arrow"></div>
+                  /> */}
+                  <div className="dropdown">
+                    <div
+                      className="control"
+                      onClick={() => setOpen((prev) => !prev)}
+                    >
+                      <div className="selected-value">Ingredient name</div>
+                      <div className={`arrow ${open ? "open" : null} `}></div>
                     </div>
-                    <div className="options">
+                    <div className={`arrow ${open ? "open" : null} `}>
                       {food.map((food) => (
                         <div className="option">{food.name}</div>
                       ))}
                     </div>
-                  </div> */}
+                  </div>
                   <input
                     type="number"
                     name="quantity"
