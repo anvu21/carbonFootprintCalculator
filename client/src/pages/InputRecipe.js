@@ -99,9 +99,9 @@ const InputRecipe = () => {
                       <div className="selected-value">Ingredient name</div>
                       <div className={`arrow ${open ? "open" : null} `}></div>
                     </div>
-                    <div className={`arrow ${open ? "open" : null} `}>
-                      {food.map((food) => (
-                        <div className="option">{food.name}</div>
+                    <div className={`options ${open ? "open" : null} `}>
+                      {food.map((value) => (
+                        <div className="option">{value.food}</div>
                       ))}
                     </div>
                   </div>
