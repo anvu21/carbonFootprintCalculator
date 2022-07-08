@@ -1,8 +1,10 @@
 import React, { Fragment, useState, useEffect } from "react";
-import { default as Select } from "react-select";
-import "./InputFood.css";
 import ListFood from "../components/ListFood";
+import Dropdown from "../components/Dropdown";
+import "./InputFood.css";
 import "./InputRecipe.css";
+
+import countries from "../components/countries.json";
 
 const InputRecipe = () => {
   const [inputFields, setInputFields] = useState([
@@ -59,9 +61,7 @@ const InputRecipe = () => {
 
   // start of testing for ingredient look up
 
-  const [open, setOpen] = useState(false);
-
-  const [selects, setSelects] = useState();
+  const [value, setValue] = useState(null);
 
   // end of testing for ingredient look up
 
@@ -96,6 +96,11 @@ const InputRecipe = () => {
                     className="foodinput"
                     onChange={(event) => handleChangeInput(index, event)}
                   /> */}
+                  <Dropdown
+                    options={countries}
+                    value={value}
+                    onChange={(val) => setValue(val)}
+                  />
                   {/* <div className="dropdown">
                     <div
                       className="control"
@@ -108,17 +113,17 @@ const InputRecipe = () => {
                       {food.map((value) => (
                         <div
                           className="option"
-                          onClick={() => {
-                            onChange(value);
-                            setOpen(false);
-                          }}
+                          onClick={(event) => 
+                            handleChangeInput(index, event)}
+                            onChange={() => 
+                              setOpen(false)}
                         >
                           {value.food}
                         </div>
                       ))}
                     </div>
                   </div> */}
-                  <Select options={food.name} className="foodinput" />
+                  {/* <Select options={food.name} className="foodinput" /> */}
                   <input
                     type="number"
                     name="quantity"

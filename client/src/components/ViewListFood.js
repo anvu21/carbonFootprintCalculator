@@ -18,16 +18,6 @@ const ViewListFood = () => {
     }
   };
 
-  //   function carbonCategory(carbon) {
-  //     if (carbon >= 0 && carbon <= 1.16) {
-  //       return <FontAwesomeIcon icon={faEarthAmericas} className="green" />;
-  //     } else if (carbon > 1.16 && carbon <= 2.37) {
-  //       return <FontAwesomeIcon icon={faEarthAmericas} className="yellow" />;
-  //     } else {
-  //       return <FontAwesomeIcon icon={faEarthAmericas} className="red" />;
-  //     }
-  //   }
-
   useEffect(() => {
     getfood();
   }, []);
@@ -36,26 +26,7 @@ const ViewListFood = () => {
 
   return (
     <Fragment className="contents">
-      {/* {" "} */}
-      {/* <table class="table mt-3 text-center">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>CO2/kg</th>
-            <th>Footprint</th>
-          </tr>
-        </thead>
-      </table> */}
       <SearchBar placeholder="Ingredient name" data={food}></SearchBar>
-      {/* <tbody>
-          {food.map((food) => (
-            <tr key={food.id}>
-              <td>{food.food}</td>
-              <td>{food.carbon}</td>
-              <td>{carbonCategory(food.carbon)}</td>
-            </tr>
-          ))}
-        </tbody> */}
     </Fragment>
   );
 };
