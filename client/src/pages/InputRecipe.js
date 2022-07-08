@@ -3,43 +3,48 @@ import "./InputFood.css";
 import ListFood from "../components/ListFood";
 
 const InputRecipe = () => {
-  // start of: things im testing for + form
-  // const [formFields, setFormFields] = useState([
-  //   { food: "", quantity: "", uom: "" },
-  // ]);
-
-  // const addFields = () => {
-  //   let object = {
-  //     food: "",
-  //     quantity: "",
-  //     uom: "",
-  //   };
-  //   setFormFields([...formFields, object]);
-  // };
-  // const [recipeField, setRecipeFields] = useState([{ recipe: "" }]);
 
   const [inputFields, setInputFields] = useState([
-    { recipe: "", food: "", quantity: "", uom: "" },
+    { recipe: "", food: "", quantity: "", uom: "kg" },
   ]);
-  const { recipe, foood,quantity,uom } = inputFields;
+  const { recipe, food,quantity,uom } = inputFields;
 
-  // const [recipeField, setRecipeFields] = useState([{ recipe: "" }]);
 
-  // const handleRecipeChangeInput = (index, event) => {
-  //   const values = [...recipeField];
-  //   values[index][event.target.name] = event.target.value;
-  //   setInputFields(values);
-  // };
-  // const [allInputFields, setAllInputFields] = useState([
-  //   { recipe: "", food: "", quantity: "", uom: "" },
-  // ]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    const test ={};
+    test.b = [];
     for (let i = 0; i < inputFields.length; i++) {
       inputFields[i].recipe = inputFields[0].recipe;
+      console.log(inputFields[i].recipe)
+      console.log(inputFields[0].recipe)
     }
+    for (let i = 0; i < inputFields.length; i++) {
+      test.b.push(inputFields[0].recipe);
+    }
+    const body = { recipe, food,quantity,uom };
+
+    
+    //console.log("test",JSON.stringify(test));
     console.log("InputFields", inputFields);
+    console.log("InputFields", JSON.stringify(inputFields));
+
+    try {
+      //const body = { recipe, food,quantity,uom };
+      //console.log(inputFields)
+      const response = await fetch("/recipe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(inputFields),
+      });
+      //const parseRespond = await response.json();
+      //console.log(parseRespond)
+      //window.location = "/addingredients";
+    } catch (err) {
+      console.error(err.message);
+    }
+
   };
 
   const handleChangeInput = (index, event) => {
@@ -58,7 +63,7 @@ const InputRecipe = () => {
   const handleAddFields = () => {
     setInputFields([
       ...inputFields,
-      { recipe: "", food: "", quantity: "", uom: "" },
+      { recipe: "", food: "", quantity: "", uom: "kg" },
     ]);
   };
 
