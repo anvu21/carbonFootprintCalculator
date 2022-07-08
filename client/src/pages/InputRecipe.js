@@ -1,4 +1,5 @@
 import React, { Fragment, useState, useEffect } from "react";
+import { default as Select } from "react-select";
 import "./InputFood.css";
 import ListFood from "../components/ListFood";
 import "./InputRecipe.css";
@@ -56,9 +57,13 @@ const InputRecipe = () => {
 
   // end of food backend
 
-  // testing for ingredient look up
+  // start of testing for ingredient look up
 
   const [open, setOpen] = useState(false);
+
+  const [selects, setSelects] = useState();
+
+  // end of testing for ingredient look up
 
   return (
     <Fragment>
@@ -91,7 +96,7 @@ const InputRecipe = () => {
                     className="foodinput"
                     onChange={(event) => handleChangeInput(index, event)}
                   /> */}
-                  <div className="dropdown">
+                  {/* <div className="dropdown">
                     <div
                       className="control"
                       onClick={() => setOpen((prev) => !prev)}
@@ -103,20 +108,17 @@ const InputRecipe = () => {
                       {food.map((value) => (
                         <div
                           className="option"
-                          onClick={(event) => {
-                            handleChangeInput(index, event);
+                          onClick={() => {
+                            onChange(value);
                             setOpen(false);
                           }}
                         >
                           {value.food}
                         </div>
                       ))}
-                      {/* <input
-                        value={value}
-                        onChange={(event) => handleChangeInput(index, event)}
-                      ></input> */}
                     </div>
-                  </div>
+                  </div> */}
+                  <Select options={food.name} className="foodinput" />
                   <input
                     type="number"
                     name="quantity"
