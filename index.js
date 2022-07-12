@@ -48,10 +48,56 @@ app.post("/food", async(req,res)=> {
 
 
 })
+//recipe post recipe
+app.post("/recipe", async(req,res)=> {
+  try{
+      
+      console.log(req.body)
+      var count = Object.keys(req.body).length
+      //console.log(count)
+      
+      for (let  i=0; i<count;i++){
+        var recipe = req.body[i].recipe;
+        console.log("Recipe:"+recipe);
+        var food = req.body[i].food;
+        console.log("Food:"+food);
+        var serving = req.body[i].serving;
+        console.log("Serving:"+serving);
+        var quantity = req.body[i].quantity;
+        console.log("Quantity:"+quantity);
+        var uom = req.body[i].uom;
+        console.log("Uom:"+uom);
+        
+        
+        const Recipe = await pool.query(
+          "INSERT INTO recipe(recipe,food,serving,quantity,uom) VALUES ($1,$2,$3,$4,$5)",
+          [recipe,food,serving,quantity,uom]
+        );
+      }
+        //res.json(Recipe.rows[i]);
+    
+      } catch (err) {
+          console.error("error")
+        console.error(err.message);
+      }
+
+
+
+})
 
 
 
 //get all
+app.get("/recipe", async (req, res) => {
+  try {
+    const allTodos = await pool.query("SELECT r.recipe, r.food,r.serving, r.quantity, r.uom, f.density, f.carbon FROM food AS f RIGHT JOIN recipe AS r USING (food) ORDER BY r.recipe");
+    res.json(allTodos.rows);
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+
+
 app.get("/food", async (req, res) => {
     try {
       const allTodos = await pool.query("SELECT * FROM food");
@@ -108,6 +154,17 @@ app.delete("/food/:id",async(req,res)=>{
   }
 
 
+})
+//Delete recipe
+app.delete("/recipe/:id",async(req,res)=>{
+  try{
+    const {id}=req.params
+    const deleteRecipe=await pool.query("DELETE FROM recipe WHERE id=$1",
+    [id])
+    res.json("Deleted")
+  }catch(err){
+    console.log(err.message)
+  }
 })
 
  app.get("*",(req,res)=>{
