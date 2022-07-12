@@ -120,6 +120,7 @@ function SearchBarRecipe({ placeholder, data }) {
               ) => (
                 <tr key={value.id}>
                   <td>{value.recipe}</td>
+                  {console.log(value.recipe)}
                   <td>{value.carbon}</td>
                   <td>{carbonCategory(value.carbon)}</td>
                 </tr>

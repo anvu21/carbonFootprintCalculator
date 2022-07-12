@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useState } from "react";
 import "../pages/InputFood.css"; // might change?
 import "./ListFood.css"; // might change?
-import SearchBar from "./SearchBar";
+import SearchBarRecipe from "./SearchBarRecipe";
 const ViewListRecipe = () => {
   const [recipe, setrecipe] = useState([]);
 
@@ -24,7 +24,10 @@ const ViewListRecipe = () => {
 
   return (
     <Fragment className="contents">
-      <SearchBar placeholder="Recipe name" data={recipe}></SearchBar>
+      <SearchBarRecipe
+        placeholder="Recipe name"
+        data={recipe}
+      ></SearchBarRecipe>
     </Fragment>
   );
 };
