@@ -5,9 +5,9 @@ import ListFood from "../components/ListFood";
 const InputRecipe = () => {
 
   const [inputFields, setInputFields] = useState([
-    { recipe: "", food: "", quantity: "", uom: "kg" },
+    { recipe: "", food: "", serving: "", quantity: "", uom: "kg" },
   ]);
-  const { recipe, food,quantity,uom } = inputFields;
+  const { recipe, food, serving, quantity,uom } = inputFields;
 
 
 
@@ -19,11 +19,14 @@ const InputRecipe = () => {
       inputFields[i].recipe = inputFields[0].recipe;
       console.log(inputFields[i].recipe)
       console.log(inputFields[0].recipe)
+      inputFields[i].serving = inputFields[0].serving;
+      console.log(inputFields[i].serving)
+      console.log(inputFields[0].serving)
     }
     for (let i = 0; i < inputFields.length; i++) {
       test.b.push(inputFields[0].recipe);
     }
-    const body = { recipe, food,quantity,uom };
+    const body = { recipe, food,serving,quantity,uom };
 
     
     //console.log("test",JSON.stringify(test));
@@ -63,7 +66,7 @@ const InputRecipe = () => {
   const handleAddFields = () => {
     setInputFields([
       ...inputFields,
-      { recipe: "", food: "", quantity: "", uom: "kg" },
+      { recipe: "", food: "",serving: "", quantity: "", uom: "kg" },
     ]);
   };
 
@@ -87,6 +90,15 @@ const InputRecipe = () => {
               name="recipe"
               value={inputFields.recipe}
               placeholder="Recipe name"
+              //onChange={(e) => onChange(e)}
+              className="recipeinput"
+              onChange={(event) => handleChangeInput(0, event)}
+            />
+            <input
+              type="number"
+              name="serving"
+              value={inputFields.serving}
+              placeholder="serving size"
               //onChange={(e) => onChange(e)}
               className="recipeinput"
               onChange={(event) => handleChangeInput(0, event)}
