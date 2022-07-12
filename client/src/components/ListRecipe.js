@@ -1,39 +1,39 @@
 import React, { Fragment, useEffect, useState } from "react";
 import "./ListFood.css";
-const ListFood = () => {
-  const [food, setfood] = useState([]);
+const ListRecipe = () => {
+  const [recipe, setrecipe] = useState([]);
 
   //delete food function
 
-  const deleteFood = async (id) => {
+  const deleteRecipe = async (id) => {
     try {
       //console.log(id)
-      const deleteFood = await fetch(`/food/${id}`, {
+      const deleteRecipe = await fetch(`/recipe/${id}`, {
         method: "DELETE",
       });
 
-      setfood(food.filter((food) => food.id !== id));
+      setrecipe(recipe.filter((recipe) => recipe.id !== id));
     } catch (err) {
       console.error(err.message);
     }
   };
 
-  const getfood = async () => {
+  const getrecipe = async () => {
     try {
-      const response = await fetch("/food");
+      const response = await fetch("/recipe");
       const jsonData = await response.json();
 
-      setfood(jsonData);
+      setrecipe(jsonData);
     } catch (err) {
       console.error(err.message);
     }
   };
 
   useEffect(() => {
-    getfood();
+    getrecipe();
   }, []);
 
-  console.log(food);
+  console.log(recipe);
 
   return (
     <Fragment className="contents">
@@ -44,19 +44,19 @@ const ListFood = () => {
         <thead>
           <tr>
             <th>Name</th>
-            <th>CO2/serving</th>
+            <th>CO2/kg</th>
             <th>Delete</th>
           </tr>
         </thead>
         <tbody>
-          {food.map((food) => (
-            <tr key={food.id}>
-              <td>{food.food}</td>
-              <td>{food.carbon}</td>
+          {recipe.map((recipe) => (
+            <tr key={recipe.id}>
+              <td>{recipe.recipe}</td>
+              <td>{recipe.carbon}</td>
               <td>
                 <button
                   className="btn btn-danger"
-                  onClick={() => deleteFood(food.id)}
+                  onClick={() => deleteRecipe(recipe.id)}
                 >
                   Delete
                 </button>
@@ -68,4 +68,4 @@ const ListFood = () => {
     </Fragment>
   );
 };
-export default ListFood;
+export default ListRecipe;

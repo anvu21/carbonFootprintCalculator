@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from "react";
 import "./InputFood.css";
-import ListFood from "../components/ListFood";
+import ListRecipe from "../components/ListRecipe";
 
 const InputRecipe = () => {
   const [inputFields, setInputFields] = useState([
@@ -124,16 +124,6 @@ const InputRecipe = () => {
                     className="quantityinput"
                     onChange={(event) => handleChangeInput(index, event)}
                   />
-                  {/* <select className="dropdown">
-              <option>g</option>
-              <option>oz</option>
-              <option>lbs</option>
-              <option>kg</option>
-              <option>tsp</option>
-              <option>tbsp</option>
-              <option>cups</option>
-            </select> */}
-
                   <select
                     value={uom}
                     name="uom"
@@ -162,17 +152,6 @@ const InputRecipe = () => {
                 <div className="space"></div>
               </div>
             ))}
-            {/* 
-            <select className="dropdown">
-              <option>g</option>
-              <option>oz</option>
-              <option>lbs</option>
-              <option>kg</option>
-              <option>tsp</option>
-              <option>tbsp</option>
-              <option>cups</option>
-            </select> 
-*/}
           </form>
 
           <div>
@@ -188,7 +167,7 @@ const InputRecipe = () => {
         </>
         {/* ))} */}
       </form>
-      <ListFood />
+      <ListRecipe />
     </Fragment>
   );
 };

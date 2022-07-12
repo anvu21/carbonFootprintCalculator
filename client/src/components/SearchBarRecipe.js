@@ -8,23 +8,25 @@ import "./ListFood.css";
 //import SearchIcon from "@mui/icons-material/Search";
 //import DisplayClick from "./DisplayClick";
 
-function SearchBar({ placeholder, data }) {
-  const [food, setfood] = useState([]);
+function SearchBarRecipe({ placeholder, data }) {
+  const [recipe, setrecipe] = useState([]);
 
-  const getfood = async () => {
+  const getrecipe = async () => {
     try {
-      const response = await fetch("/food");
+      const response = await fetch("/recipe");
       const jsonData = await response.json();
 
-      setfood(jsonData);
+      setrecipe(jsonData);
     } catch (err) {
       console.error(err.message);
     }
   };
 
   useEffect(() => {
-    getfood();
+    getrecipe();
   }, []);
+
+  console.log(recipe);
 
   //   const [filteredData, setFilteredData] = useState([]);
 
@@ -97,17 +99,17 @@ function SearchBar({ placeholder, data }) {
         <thead>
           <tr>
             <th>Name</th>
-            <th>CO2/serving</th>
+            <th>CO2/kg</th>
             <th>Footprint</th>
           </tr>
         </thead>
         <tbody>
-          {food // will be changed to new array of recipe names and carbon vals
+          {recipe // will be changed to new array of recipe names and carbon vals
             .filter((value) => {
               if (searchTerm == "") {
                 return value;
               } else if (
-                value.food.toLowerCase().includes(searchTerm.toLowerCase())
+                value.recipe.toLowerCase().includes(searchTerm.toLowerCase())
               ) {
                 return value;
               }
@@ -117,7 +119,7 @@ function SearchBar({ placeholder, data }) {
                 value // changed to filteredData
               ) => (
                 <tr key={value.id}>
-                  <td>{value.food}</td>
+                  <td>{value.recipe}</td>
                   <td>{value.carbon}</td>
                   <td>{carbonCategory(value.carbon)}</td>
                 </tr>
@@ -128,4 +130,4 @@ function SearchBar({ placeholder, data }) {
     </div>
   );
 }
-export default SearchBar;
+export default SearchBarRecipe;
