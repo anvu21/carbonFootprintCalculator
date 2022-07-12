@@ -1,23 +1,48 @@
-import React, { Fragment, useState, useEffect } from "react";
-import ListFood from "../components/ListFood";
-import Dropdown from "../components/Dropdown";
+import React, { Fragment, useState } from "react";
 import "./InputFood.css";
-import "./InputRecipe.css";
-
-import countries from "../components/countries.json";
+import ListFood from "../components/ListFood";
 
 const InputRecipe = () => {
   const [inputFields, setInputFields] = useState([
-    { recipe: "", food: "", quantity: "", uom: "" },
+    { recipe: "", food: "", serving: "", quantity: "", uom: "kg" },
   ]);
-  const { recipe, foood, quantity, uom } = inputFields;
+  const { recipe, food, serving, quantity, uom } = inputFields;
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    const test = {};
+    test.b = [];
     for (let i = 0; i < inputFields.length; i++) {
       inputFields[i].recipe = inputFields[0].recipe;
+      console.log(inputFields[i].recipe);
+      console.log(inputFields[0].recipe);
+      inputFields[i].serving = inputFields[0].serving;
+      console.log(inputFields[i].serving);
+      console.log(inputFields[0].serving);
     }
+    for (let i = 0; i < inputFields.length; i++) {
+      test.b.push(inputFields[0].recipe);
+    }
+    const body = { recipe, food, serving, quantity, uom };
+
+    //console.log("test",JSON.stringify(test));
     console.log("InputFields", inputFields);
+    console.log("InputFields", JSON.stringify(inputFields));
+
+    try {
+      //const body = { recipe, food,quantity,uom };
+      //console.log(inputFields)
+      const response = await fetch("/recipe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(inputFields),
+      });
+      //const parseRespond = await response.json();
+      //console.log(parseRespond)
+      //window.location = "/addingredients";
+    } catch (err) {
+      console.error(err.message);
+    }
   };
 
   const handleChangeInput = (index, event) => {
@@ -25,51 +50,34 @@ const InputRecipe = () => {
     values[index][event.target.name] = event.target.value;
     setInputFields(values);
   };
+
+  // const handleRecipeChangeInput = (event) => {
+  //   const recipe = event.target.value;
+  //   setRecipeFields(recipe);
+  //   console.log(event.target.value);
+  // };
+
+  // end of: things im testing for + form
   const handleAddFields = () => {
     setInputFields([
       ...inputFields,
-      { recipe: "", food: "", quantity: "", uom: "" },
+      { recipe: "", food: "", serving: "", quantity: "", uom: "kg" },
     ]);
   };
 
   const handleRemoveFields = (index) => {
+    // event.preventDefault();
     const values = [...inputFields];
     values.splice(index, 1);
     setInputFields(values);
   };
-
-  // start of food backend
-
-  const [food, setfood] = useState([]);
-
-  const getfood = async () => {
-    try {
-      const response = await fetch("/food");
-      const jsonData = await response.json();
-
-      setfood(jsonData);
-    } catch (err) {
-      console.error(err.message);
-    }
-  };
-
-  useEffect(() => {
-    getfood();
-  }, []);
-
-  // end of food backend
-
-  // start of testing for ingredient look up
-
-  const [value, setValue] = useState(null);
-
-  // end of testing for ingredient look up
 
   return (
     <Fragment>
       <h1 className="title">Add Recipes</h1>
 
       <form onSubmit={handleSubmit}>
+        {/* {recipeField.map((recipeField, index) => ( */}
         <>
           <div>
             <input
@@ -77,7 +85,17 @@ const InputRecipe = () => {
               name="recipe"
               value={inputFields.recipe}
               placeholder="Recipe name"
+              //onChange={(e) => onChange(e)}
               className="recipeinput"
+              onChange={(event) => handleChangeInput(0, event)}
+            />
+            <input
+              type="number"
+              name="serving"
+              value={inputFields.serving}
+              placeholder="Servings"
+              //onChange={(e) => onChange(e)}
+              className="servinginput"
               onChange={(event) => handleChangeInput(0, event)}
             />
           </div>
@@ -86,7 +104,7 @@ const InputRecipe = () => {
             {inputFields.map((inputFields, index) => (
               <div key={index}>
                 <div className="inputfield">
-                  {/* <input
+                  <input
                     type="text"
                     name="food"
                     //value={food}
@@ -95,35 +113,7 @@ const InputRecipe = () => {
                     value={inputFields.food}
                     className="foodinput"
                     onChange={(event) => handleChangeInput(index, event)}
-                  /> */}
-                  <Dropdown
-                    options={countries}
-                    value={value}
-                    onChange={(val) => setValue(val)}
                   />
-                  {/* <div className="dropdown">
-                    <div
-                      className="control"
-                      onClick={() => setOpen((prev) => !prev)}
-                    >
-                      <div className="selected-value">Ingredient name</div>
-                      <div className={`arrow ${open ? "open" : null} `}></div>
-                    </div>
-                    <div className={`options ${open ? "open" : null} `}>
-                      {food.map((value) => (
-                        <div
-                          className="option"
-                          onClick={(event) => 
-                            handleChangeInput(index, event)}
-                            onChange={() => 
-                              setOpen(false)}
-                        >
-                          {value.food}
-                        </div>
-                      ))}
-                    </div>
-                  </div> */}
-                  {/* <Select options={food.name} className="foodinput" /> */}
                   <input
                     type="number"
                     name="quantity"
@@ -134,6 +124,16 @@ const InputRecipe = () => {
                     className="quantityinput"
                     onChange={(event) => handleChangeInput(index, event)}
                   />
+                  {/* <select className="dropdown">
+              <option>g</option>
+              <option>oz</option>
+              <option>lbs</option>
+              <option>kg</option>
+              <option>tsp</option>
+              <option>tbsp</option>
+              <option>cups</option>
+            </select> */}
+
                   <select
                     value={uom}
                     name="uom"
@@ -148,6 +148,7 @@ const InputRecipe = () => {
                     <option value="tbsp">tbsp</option>
                     <option value="cups">cups</option>
                   </select>
+
                   <div
                     className="removebutton"
                     onClick={() => handleRemoveFields(index)}
@@ -161,7 +162,19 @@ const InputRecipe = () => {
                 <div className="space"></div>
               </div>
             ))}
+            {/* 
+            <select className="dropdown">
+              <option>g</option>
+              <option>oz</option>
+              <option>lbs</option>
+              <option>kg</option>
+              <option>tsp</option>
+              <option>tbsp</option>
+              <option>cups</option>
+            </select> 
+*/}
           </form>
+
           <div>
             <button
               className="addrecipebutton"

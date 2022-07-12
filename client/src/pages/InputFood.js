@@ -16,6 +16,7 @@ const InputFood = () => {
     e.preventDefault();
     try {
       const body = { food, density, carbon };
+      console.log(body);
       const response = await fetch("/food", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -23,7 +24,7 @@ const InputFood = () => {
       });
       //const parseRespond = await response.json();
       //console.log(parseRespond)
-      window.location = "/addingredients";
+      //window.location = "/addingredients";
     } catch (err) {
       console.error(err.message);
     }
