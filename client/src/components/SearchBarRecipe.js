@@ -9,24 +9,25 @@ import "./ListFood.css";
 //import DisplayClick from "./DisplayClick";
 
 function SearchBarRecipe({ placeholder, data }) {
-  const [recipe, setrecipe] = useState([]);
+  const [recipeJSON, setrecipe] = useState([]);
 
   const getrecipe = async () => {
     try {
       const response = await fetch("/recipe");
       const jsonData = await response.json();
-
+      console.log(jsonData)
       setrecipe(jsonData);
     } catch (err) {
       console.error(err.message);
     }
   };
 
-  useEffect(() => {
+  useEffect(() => {(async () => {
     getrecipe();
-  }, []);
+  })();
+}, []);
 
-  console.log(recipe);
+  //console.log(recipe);
 
   //   const [filteredData, setFilteredData] = useState([]);
 
@@ -37,7 +38,29 @@ function SearchBarRecipe({ placeholder, data }) {
   // takes in backend data as list and index of the start
   function recipeCalc() {
     var index = 0;
-    var recipeName = recipe[index].recipe;
+    
+    let result = recipeJSON.map(a => a.recipe);
+    let result2 = recipeJSON.map(a => a);
+
+    console.log(result)
+    console.log(result2)
+    //console.log("function check ")
+    //console.log(recipeJSON[1]["recipe"])
+    //var recipetest=recipeJSON[1]
+    //console.log(recipetest)
+   // var name= "recipe"
+    //console.log(recipetest[name])
+    //var test = ""
+    try{
+      //test= recipetest[1]["recipe"]
+
+    }catch (error){
+      console.error(error)
+
+
+    }
+  
+    /*var recipeName = recipe[index].recipe;
     var carbonTotal = 0;
     while (index < recipe.length) {
       while (recipeName === recipe[index].recipe) {
@@ -77,6 +100,8 @@ function SearchBarRecipe({ placeholder, data }) {
       carbonTotal = 0;
     }
     // add to array here (array of recipe name and CO2 val)
+
+    */
   }
 
   recipeCalc();
@@ -124,7 +149,7 @@ function SearchBarRecipe({ placeholder, data }) {
           {/* {recipeCalc()} */}
           {recipeCarbonList // will be changed to new array of recipe names and carbon vals
             .filter((value) => {
-              if (searchTerm == "") {
+              if (searchTerm === "") {
                 return value;
               } else if (
                 value.recipeCarbonList
