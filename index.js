@@ -55,14 +55,24 @@ app.post("/recipe", async(req,res)=> {
       console.log(req.body)
       var count = Object.keys(req.body).length
       //console.log(count)
-      
+      var recipe = req.body[0].recipe;
+      console.log("Recipe:"+recipe);
+      var serving = req.body[0].serving;
+      console.log("Serving:"+serving);
+      const result = await pool.query(
+        "INSERT INTO recipe_index(name,serving) VALUES ($1,$2) RETURNING recipe_id",
+        [recipe,serving]
+      );
+      const recipe_id =result.rows[0]
+      console.log(recipe_id.recipe_id)
+
       for (let  i=0; i<count;i++){
         var recipe = req.body[i].recipe;
         console.log("Recipe:"+recipe);
+        
         var food = req.body[i].food;
         console.log("Food:"+food);
-        var serving = req.body[i].serving;
-        console.log("Serving:"+serving);
+        
         var quantity = req.body[i].quantity;
         console.log("Quantity:"+quantity);
         var uom = req.body[i].uom;
@@ -70,11 +80,11 @@ app.post("/recipe", async(req,res)=> {
         
         
         const Recipe = await pool.query(
-          "INSERT INTO recipe(recipe,food,serving,quantity,uom) VALUES ($1,$2,$3,$4,$5)",
-          [recipe,food,serving,quantity,uom]
+          "INSERT INTO recipe(recipe_id,food,quantity,uom) VALUES ($1,$2,$3,$4)",
+          [recipe_id.recipe_id,food,quantity,uom]
         );
       }
-        //res.json(Recipe.rows[i]);
+      //res.json(Recipe.rows[i]);
     
       } catch (err) {
           console.error("error")
@@ -96,6 +106,21 @@ app.get("/recipe", async (req, res) => {
     console.error(err.message);
   }
 });
+//get a recipe
+app.get("/recipe/:id", async(req,res)=> {
+  try {
+
+    const {id}=req.params;
+    const getFood =await pool.query("Select Re.name, Re.serving, r.food, r.quantity, r.uom, f.density, f.carbon FROM recipe_index AS Re JOIN recipe AS r On Re.recipe_id = r.recipe_id Join food as f On f.food = r.food Where Re.recipe_id=$1",[id])
+    console.log(req.params)
+    //console.log(getFood.rows[0])
+    res.json(getFood.rows[0])
+  } catch (err){
+    console.error(err.message)
+  }
+
+
+})
 
 
 app.get("/food", async (req, res) => {
@@ -159,7 +184,9 @@ app.delete("/food/:id",async(req,res)=>{
 app.delete("/recipe/:id",async(req,res)=>{
   try{
     const {id}=req.params
-    const deleteRecipe=await pool.query("DELETE FROM recipe WHERE id=$1",
+    const deleteRecipe=await pool.query("DELETE FROM recipe WHERE recipe_id=$1",
+    [id])
+    const deleteRecipe2=await pool.query("DELETE FROM recipe_index WHERE recipe_id=$1",
     [id])
     res.json("Deleted")
   }catch(err){
