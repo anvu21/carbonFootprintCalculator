@@ -90,7 +90,7 @@ app.post("/recipe", async(req,res)=> {
 //get all
 app.get("/recipe", async (req, res) => {
   try {
-    const allTodos = await pool.query("SELECT r.recipe, r.food,r.serving, r.quantity, r.uom, f.density, f.carbon FROM food AS f RIGHT JOIN recipe AS r USING (food) ORDER BY r.recipe");
+    const allTodos = await pool.query("Select Re.name, Re.serving, r.food, r.quantity, r.uom, f.density, f.carbon FROM recipe_index AS Re JOIN recipe AS r On Re.recipe_id = r.recipe_id Join food as f On f.food = r.food");
     res.json(allTodos.rows);
   } catch (err) {
     console.error(err.message);
