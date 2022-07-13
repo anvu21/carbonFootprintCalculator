@@ -32,37 +32,54 @@ function SearchBarRecipe({ placeholder, data }) {
 
   const [searchTerm, setSearchTerm] = useState("");
 
+  var recipeCarbonList = [{ recipeName: "hi", recipeCarbon: 0 }];
+
   // takes in backend data as list and index of the start
-  function recipeCalc(recipeName, index) {
-    var recipeTable = recipeName;
+  function recipeCalc() {
+    var index = 0;
+    var recipeName = recipe[index].recipe;
     var carbonTotal = 0;
-    while (recipeTable === recipeName) {
-      if (recipeTable.uom === "lbs") {
-        carbonTotal += recipeTable.quantity * 0.45359237 * recipeTable.carbon;
-      } else if (recipeTable.uom === "g") {
-        carbonTotal += (recipeTable.quantity / 1000) * recipeTable.carbon;
-      } else if (recipeTable.uom === "oz") {
-        carbonTotal += recipeTable.quantity * 0.02835 * recipeTable.carbon;
-      } else if (recipeTable.uom === "cups") {
-        carbonTotal +=
-          ((recipeTable.quantity * recipeTable.density) / 4.226753) *
-          recipeTable.carbon;
-      } else if (recipeTable.uom === "tbsp") {
-        carbonTotal +=
-          ((recipeTable.quantity * recipeTable.density) / 67.628045) *
-          recipeTable.carbon;
-      } else if (recipeTable.uom === "tsp") {
-        carbonTotal +=
-          ((recipeTable.quantity * recipeTable.density) / 202.884136) *
-          recipeTable.carbon;
-      } else {
-        carbonTotal += recipeTable.quantity * recipeTable.carbon;
+    while (index < recipe.length) {
+      while (recipeName === recipe[index].recipe) {
+        if (recipe[index].uom === "lbs") {
+          carbonTotal +=
+            recipe[index].quantity * 0.45359237 * recipe[index].carbon;
+        } else if (recipe[index].uom === "g") {
+          carbonTotal += (recipe[index].quantity / 1000) * recipe[index].carbon;
+        } else if (recipe[index].uom === "oz") {
+          carbonTotal +=
+            recipe[index].quantity * 0.02835 * recipe[index].carbon;
+        } else if (recipe[index].uom === "cups") {
+          carbonTotal +=
+            ((recipe[index].quantity * recipe[index].density) / 4.226753) *
+            recipe[index].carbon;
+        } else if (recipe[index].uom === "tbsp") {
+          carbonTotal +=
+            ((recipe[index].quantity * recipe[index].density) / 67.628045) *
+            recipe[index].carbon;
+        } else if (recipe[index].uom === "tsp") {
+          carbonTotal +=
+            ((recipe[index].quantity * recipe[index].density) / 202.884136) *
+            recipe[index].carbon;
+        } else {
+          // for kg
+          carbonTotal += recipe[index].quantity * recipe[index].carbon;
+        }
+        index += 1;
+        recipeName = recipe[index].recipe;
       }
-      recipeTable = recipe[++index].recipe;
+      // add to array here
+      // make carbonTotal = 0
+      recipeCarbonList.push(
+        recipe[--index].recipe,
+        carbonTotal / recipe[--index].serving
+      );
+      carbonTotal = 0;
     }
     // add to array here (array of recipe name and CO2 val)
-    return index; // final index returned (to know starting index of next loop)
   }
+
+  recipeCalc();
 
   function carbonCategory(carbon) {
     if (carbon >= 0 && carbon <= 1.16) {
@@ -104,12 +121,15 @@ function SearchBarRecipe({ placeholder, data }) {
           </tr>
         </thead>
         <tbody>
-          {recipe // will be changed to new array of recipe names and carbon vals
+          {/* {recipeCalc()} */}
+          {recipeCarbonList // will be changed to new array of recipe names and carbon vals
             .filter((value) => {
               if (searchTerm == "") {
                 return value;
               } else if (
-                value.recipe.toLowerCase().includes(searchTerm.toLowerCase())
+                value.recipeCarbonList
+                  .toLowerCase()
+                  .includes(searchTerm.toLowerCase())
               ) {
                 return value;
               }
@@ -119,10 +139,9 @@ function SearchBarRecipe({ placeholder, data }) {
                 value // changed to filteredData
               ) => (
                 <tr key={value.id}>
-                  <td>{value.recipe}</td>
-                  {console.log(value.recipe)}
-                  <td>{value.carbon}</td>
-                  <td>{carbonCategory(value.carbon)}</td>
+                  <td>{value.recipeName}</td>
+                  <td>{value.recipeCarbon}</td>
+                  <td>{carbonCategory(value.recipeCarbon)}</td>
                 </tr>
               )
             )}

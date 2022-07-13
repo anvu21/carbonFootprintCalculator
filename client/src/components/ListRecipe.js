@@ -52,7 +52,7 @@ const ListRecipe = () => {
           {recipe.map((recipe) => (
             <tr key={recipe.id}>
               <td>{recipe.recipe}</td>
-              <td>{recipe.carbon}</td>
+              <td>{recipe.food.carbon}</td>
               <td>
                 <button
                   className="btn btn-danger"
