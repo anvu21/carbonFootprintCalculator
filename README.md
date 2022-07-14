@@ -36,14 +36,18 @@ CREATE TABLE "food"(
     "carbon" decimal NOT NULL
 );
 CREATE TABLE "recipe"(
-    "id" SERIAL PRIMARY KEY,
-    "food" VARCHAR(255) UNIQUE,
-    "serving" decimal NOT NULL,
+    "id" SERIAL PRIMARY KEY	,
+    "recipe_id" int NOT NULL,
+    "food" VARCHAR(255) NOT NULL,
     "quantity" decimal NOT NULL,
     "uom" VARCHAR(255) NOT NULL
 );
 
-
+Create TABLE "recipe_index"(
+    "recipe_id" SERIAL PRIMARY KEY,
+    "name" VARCHAR(255) UNIQUE,
+    "serving" decimal NOT NULL
+);
 
 INSERT INTO food (food, density, carbon) VALUES ('rice' ,50 ,50 );
 Select * from food;

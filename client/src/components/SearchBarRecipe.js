@@ -5,6 +5,7 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { faEarthAmericas } from "@fortawesome/free-solid-svg-icons";
 import "../pages/InputFood.css";
 import "./ListFood.css";
+import CarbonCalculator from "./CarbonCalculator";
 //import SearchIcon from "@mui/icons-material/Search";
 //import DisplayClick from "./DisplayClick";
 
@@ -141,18 +142,18 @@ function SearchBarRecipe({ placeholder, data }) {
         <thead>
           <tr>
             <th>Name</th>
-            <th>CO2/kg</th>
-            <th>Footprint</th>
+            <th>Serving</th>
+            <th>Carbon</th>
           </tr>
         </thead>
         <tbody>
           {/* {recipeCalc()} */}
-          {recipeCarbonList // will be changed to new array of recipe names and carbon vals
+          {recipeJSON // will be changed to new array of recipe names and carbon vals
             .filter((value) => {
               if (searchTerm === "") {
                 return value;
               } else if (
-                value.recipeCarbonList
+                value.recipeJSON
                   .toLowerCase()
                   .includes(searchTerm.toLowerCase())
               ) {
@@ -164,9 +165,11 @@ function SearchBarRecipe({ placeholder, data }) {
                 value // changed to filteredData
               ) => (
                 <tr key={value.id}>
-                  <td>{value.recipeName}</td>
-                  <td>{value.recipeCarbon}</td>
-                  <td>{carbonCategory(value.recipeCarbon)}</td>
+                  <td>{value.name}</td>
+                  <td>{value.serving}</td>
+                  <td>
+                  <CarbonCalculator value={value} />
+                  </td>
                 </tr>
               )
             )}

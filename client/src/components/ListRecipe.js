@@ -44,15 +44,16 @@ const ListRecipe = () => {
         <thead>
           <tr>
             <th>Name</th>
-            <th>CO2/kg</th>
+            <th>Serving</th>
+            <th>Carbon</th>
             <th>Delete</th>
           </tr>
         </thead>
         <tbody>
           {recipe.map((recipe) => (
             <tr key={recipe.id}>
-              <td>{recipe.recipe}</td>
-              <td>{recipe.food.carbon}</td>
+              <td>{recipe.name}</td>
+              <td>{recipe.serving}</td>
               <td>
                 <button
                   className="btn btn-danger"
