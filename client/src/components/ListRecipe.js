@@ -1,6 +1,7 @@
 import React, { Fragment, useEffect, useState } from "react";
 import "./ListFood.css";
 import CarbonCalculator from "./CarbonCalculator";
+import testing from "./testing.json";
 
 const ListRecipe = () => {
   const [recipe, setrecipe] = useState([]);
@@ -9,7 +10,7 @@ const ListRecipe = () => {
 
   const deleteRecipe = async (id) => {
     try {
-      console.log(id)
+      console.log(id);
       const deleteRecipe = await fetch(`/recipe/${id}`, {
         method: "DELETE",
       });
@@ -27,7 +28,6 @@ const ListRecipe = () => {
       console.log("test");
       console.log(jsonData);
       setrecipe(jsonData);
-      
     } catch (err) {
       console.error(err.message);
     }
@@ -55,25 +55,28 @@ const ListRecipe = () => {
           </tr>
         </thead>
         <tbody>
-          {recipe.map((value) => (
-            <tr key={value.recipe_id}>
-              <td>{value.name}</td>
-              <td>{value.serving}</td>
-              <td>{value.location}</td>
-              <td>
+          {
+            //testing
+            recipe.map((value) => (
+              <tr key={value.recipe_id}>
+                <td>{value.recipe}</td>
+                {/* <td>{value.name}</td> */}
+                <td>{value.serving}</td>
+                <td>{value.location}</td>
+                <td>
                   <CarbonCalculator value={value} />
-                  </td>
-              <td>
-                
-                <button
-                  className="btn btn-danger"
-                  onClick={() => deleteRecipe(value.recipe_id)}
-                >
-                  Delete
-                </button>
-              </td>
-            </tr>
-          ))}
+                </td>
+                <td>
+                  <button
+                    className="btn btn-danger"
+                    onClick={() => deleteRecipe(value.recipe_id)}
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))
+          }
         </tbody>
       </table>
     </Fragment>

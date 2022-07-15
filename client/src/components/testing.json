@@ -1,0 +1,42 @@
+[
+  {
+    "recipe": "Cheese Pizza",
+    "location": "Rathbone Dining Hall",
+    "food": "Pizza dough",
+    "serving": "24.07454545",
+    "quantity": "325",
+    "uom": "g",
+    "density": "",
+    "carbon": "6"
+  },
+  {
+    "recipe": "Cheese Pizza",
+    "location": "Rathbone Dining Hall",
+    "food": "Tomato sauce",
+    "serving": "24.07454545",
+    "quantity": "2.625",
+    "uom": "cups",
+    "density": "1.03",
+    "carbon": "0.56"
+  },
+  {
+    "recipe": "Cheese Pizza",
+    "location": "Rathbone Dining Hall",
+    "food": "Mozzarella Cheese",
+    "serving": "24.07454545",
+    "quantity": "7",
+    "uom": "cups",
+    "density": "1.01",
+    "carbon": "23.88"
+  },
+  {
+    "recipe": "Cheese Pizza",
+    "location": "Rathbone Dining Hall",
+    "food": "Oil",
+    "serving": "24.07454545",
+    "quantity": "1.166667",
+    "uom": "tbsp",
+    "density": "0.765",
+    "carbon": "5.42"
+  }
+]

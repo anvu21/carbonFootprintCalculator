@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Fascinate&family=Kdam+Thmor+Pro&family=Source+Sans+Pro:ital,wght@0,300;1,300&display=swap");
-
+@import url("https://fonts.googleapis.com/css2?family=Fascinate&family=Kanit:wght@600&family=Kdam+Thmor+Pro&family=Source+Sans+Pro:ital,wght@0,300;1,300&display=swap");
 .fcfheader {
-  font-family: "Fascinate", cursive;
+  font-family: "Kanit", sans-serif;
   font-size: 1.9rem;
   color: black;
   text-align: center;

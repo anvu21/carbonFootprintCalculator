@@ -6,6 +6,7 @@ import { faEarthAmericas } from "@fortawesome/free-solid-svg-icons";
 import "../pages/InputFood.css";
 import "./ListFood.css";
 import CarbonCalculator from "./CarbonCalculator";
+import testing from "./testing.json";
 //import SearchIcon from "@mui/icons-material/Search";
 //import DisplayClick from "./DisplayClick";
 
@@ -16,17 +17,18 @@ function SearchBarRecipe({ placeholder, data }) {
     try {
       const response = await fetch("/recipe");
       const jsonData = await response.json();
-      console.log(jsonData)
+      console.log(jsonData);
       setrecipe(jsonData);
     } catch (err) {
       console.error(err.message);
     }
   };
 
-  useEffect(() => {(async () => {
-    getrecipe();
-  })();
-}, []);
+  useEffect(() => {
+    (async () => {
+      getrecipe();
+    })();
+  }, []);
 
   //console.log(recipe);
 
@@ -39,28 +41,25 @@ function SearchBarRecipe({ placeholder, data }) {
   // takes in backend data as list and index of the start
   function recipeCalc() {
     var index = 0;
-    
+
     //let result = recipeJSON.map(a => a.recipe);
     //let result2 = recipeJSON.map(a => a);
 
-    console.log(recipeJSON)
+    console.log(recipeJSON);
     //console.log(result2)
     //console.log("function check ")
     //console.log(recipeJSON[1]["recipe"])
     //var recipetest=recipeJSON[1]
     //console.log(recipetest)
-   // var name= "recipe"
+    // var name= "recipe"
     //console.log(recipetest[name])
     //var test = ""
-    try{
+    try {
       //test= recipetest[1]["recipe"]
-
-    }catch (error){
-      console.error(error)
-
-
+    } catch (error) {
+      console.error(error);
     }
-  
+
     /*var recipeName = recipe[index].recipe;
     var carbonTotal = 0;
     while (index < recipe.length) {
@@ -149,32 +148,29 @@ function SearchBarRecipe({ placeholder, data }) {
         </thead>
         <tbody>
           {/* {recipeCalc()} */}
-          {recipeJSON // will be changed to new array of recipe names and carbon vals
-            .filter((value) => {
-              if (searchTerm === "") {
-                return value;
-              } else if (
-                value.name
-                  .toLowerCase()
-                  .includes(searchTerm.toLowerCase())
-              ) {
-                return value;
-              }
-            })
-            .map(
-              (
-                value // changed to filteredData
-              ) => (
+          {
+            //testing
+            recipeJSON // will be changed to new array of recipe names and carbon vals
+              .filter((value) => {
+                if (searchTerm === "") {
+                  return value;
+                } else if (
+                  value.name.toLowerCase().includes(searchTerm.toLowerCase())
+                ) {
+                  return value;
+                }
+              })
+              .map((value) => (
                 <tr key={value.id}>
-                  <td>{value.name}</td>
+                  <td>{value.recipe}</td> {/* was value.name */}
                   <td>{value.serving}</td>
                   <td>{value.location}</td>
                   <td>
-                  <CarbonCalculator value={value} />
+                    <CarbonCalculator value={value} />
                   </td>
                 </tr>
-              )
-            )}
+              ))
+          }
         </tbody>
       </table>
     </div>
