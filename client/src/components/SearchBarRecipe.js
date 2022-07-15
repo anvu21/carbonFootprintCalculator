@@ -40,11 +40,11 @@ function SearchBarRecipe({ placeholder, data }) {
   function recipeCalc() {
     var index = 0;
     
-    let result = recipeJSON.map(a => a.recipe);
-    let result2 = recipeJSON.map(a => a);
+    //let result = recipeJSON.map(a => a.recipe);
+    //let result2 = recipeJSON.map(a => a);
 
-    console.log(result)
-    console.log(result2)
+    console.log(recipeJSON)
+    //console.log(result2)
     //console.log("function check ")
     //console.log(recipeJSON[1]["recipe"])
     //var recipetest=recipeJSON[1]
@@ -143,6 +143,7 @@ function SearchBarRecipe({ placeholder, data }) {
           <tr>
             <th>Name</th>
             <th>Serving</th>
+            <th>Location</th>
             <th>Carbon</th>
           </tr>
         </thead>
@@ -153,7 +154,7 @@ function SearchBarRecipe({ placeholder, data }) {
               if (searchTerm === "") {
                 return value;
               } else if (
-                value.recipeJSON
+                value.name
                   .toLowerCase()
                   .includes(searchTerm.toLowerCase())
               ) {
@@ -167,6 +168,7 @@ function SearchBarRecipe({ placeholder, data }) {
                 <tr key={value.id}>
                   <td>{value.name}</td>
                   <td>{value.serving}</td>
+                  <td>{value.location}</td>
                   <td>
                   <CarbonCalculator value={value} />
                   </td>

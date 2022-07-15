@@ -46,8 +46,16 @@ CREATE TABLE "recipe"(
 Create TABLE "recipe_index"(
     "recipe_id" SERIAL PRIMARY KEY,
     "name" VARCHAR(255) UNIQUE,
-    "serving" decimal NOT NULL
+    "serving" decimal NOT NULL,
+	"location" VARCHAR(255) NOT NULL
 );
+
+Select Re.name, Re.serving,Re.location, r.food, r.quantity, r.uom, f.density, f.carbon
+	FROM recipe_index AS Re
+	JOIN recipe AS r
+	On Re.recipe_id = r.recipe_id
+	Join food as f
+	On f.food = r.food
 
 INSERT INTO food (food, density, carbon) VALUES ('rice' ,50 ,50 );
 Select * from food;

@@ -9,7 +9,7 @@ const ViewListRecipe = () => {
     try {
       const response = await fetch("/recipe");
       const jsonData = await response.json();
-
+      
       setrecipe(jsonData);
     } catch (err) {
       console.error(err.message);

@@ -4,9 +4,9 @@ import ListRecipe from "../components/ListRecipe";
 
 const InputRecipe = () => {
   const [inputFields, setInputFields] = useState([
-    { recipe: "", food: "", serving: "", quantity: "", uom: "kg" },
+    { recipe: "",location:"Rathbone Dinning Hall", food: "", serving: "", quantity: "", uom: "kg" },
   ]);
-  const { recipe, food, serving, quantity, uom } = inputFields;
+  const { recipe,location, food, serving, quantity, uom } = inputFields;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,7 +23,7 @@ const InputRecipe = () => {
     for (let i = 0; i < inputFields.length; i++) {
       test.b.push(inputFields[0].recipe);
     }
-    const body = { recipe, food, serving, quantity, uom };
+    const body = { recipe, food,location, serving, quantity, uom };
 
     //console.log("test",JSON.stringify(test));
     console.log("InputFields", inputFields);
@@ -39,7 +39,9 @@ const InputRecipe = () => {
       });
       //const parseRespond = await response.json();
       //console.log(parseRespond)
-      //window.location = "/addingredients";
+      window.location = "/addingredients";
+
+      //window.location = "/addrecipes";
     } catch (err) {
       console.error(err.message);
     }
@@ -61,7 +63,7 @@ const InputRecipe = () => {
   const handleAddFields = () => {
     setInputFields([
       ...inputFields,
-      { recipe: "", food: "", serving: "", quantity: "", uom: "kg" },
+      { recipe: "",location: "", food: "", serving: "", quantity: "", uom: "kg" },
     ]);
   };
 
@@ -98,6 +100,20 @@ const InputRecipe = () => {
               className="servinginput"
               onChange={(event) => handleChangeInput(0, event)}
             />
+            <select
+                    value={location}
+                    name="location"
+                    onChange={(event) => handleChangeInput(0, event)}
+                    className="locationinput"
+                  >
+                    <option value="Rathbone Dinning Hall">Rathbone Dinning Hall</option>
+                    <option value="Lower Court UC">Lower Court UC</option>
+                    <option value="Broadhead Dinning Hall">Broadhead Dinning Hall</option>
+                    <option value="Upper UC Food Market">Upper UC Food Market</option>
+                    <option value="tsp">tsp</option>
+                    <option value="tbsp">tbsp</option>
+                    <option value="cups">cups</option>
+                  </select>
           </div>
           <div className="space"></div>
           <form className="ingredientinput">

@@ -24,7 +24,7 @@ const InputFood = () => {
       });
       //const parseRespond = await response.json();
       //console.log(parseRespond)
-      //window.location = "/addingredients";
+      window.location = "/addingredients";
     } catch (err) {
       console.error(err.message);
     }

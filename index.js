@@ -59,9 +59,11 @@ app.post("/recipe", async(req,res)=> {
       console.log("Recipe:"+recipe);
       var serving = req.body[0].serving;
       console.log("Serving:"+serving);
+      var location = req.body[0].location;
+      console.log("location:"+location);
       const result = await pool.query(
-        "INSERT INTO recipe_index(name,serving) VALUES ($1,$2) RETURNING recipe_id",
-        [recipe,serving]
+        "INSERT INTO recipe_index(name,serving,location) VALUES ($1,$2,$3) RETURNING recipe_id",
+        [recipe,serving,location]
       );
       const recipe_id =result.rows[0]
       console.log(recipe_id.recipe_id)
@@ -112,10 +114,10 @@ app.get("/recipe/:id", async(req,res)=> {
   try {
 
     const {id}=req.params;
-    const getFood =await pool.query("Select Re.name, Re.serving, r.food, r.quantity, r.uom, f.density, f.carbon FROM recipe_index AS Re JOIN recipe AS r On Re.recipe_id = r.recipe_id Join food as f On f.food = r.food Where Re.recipe_id=$1",[id])
-    console.log(req.params)
-    //console.log(getFood.rows[0])
-    res.json(getFood.rows[0])
+    const getFood =await pool.query("Select r.food, r.quantity, r.uom, f.density, f.carbon FROM recipe_index AS Re JOIN recipe AS r On Re.recipe_id = r.recipe_id Join food as f On f.food = r.food Where Re.recipe_id=$1",[id])
+    //console.log(req.params)
+    console.log(getFood.rows)
+    res.json(getFood.rows)
   } catch (err){
     console.error(err.message)
   }
@@ -184,6 +186,7 @@ app.delete("/food/:id",async(req,res)=>{
 //Delete recipe
 app.delete("/recipe/:id",async(req,res)=>{
   try{
+    console.log(req.params)
     const {id}=req.params
     const deleteRecipe=await pool.query("DELETE FROM recipe WHERE recipe_id=$1",
     [id])
