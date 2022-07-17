@@ -20,6 +20,7 @@ const CarbonCalculator = ({ value }) => {
 
       setDescription(jsonData);
       //window.location = "/";
+      console.log("Carbon viewer")
       console.log(jsonData);
     } catch (err) {
       console.error(err.message);
