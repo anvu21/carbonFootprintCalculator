@@ -19,8 +19,8 @@ const pool = new Pool({
   connectionString:
     process.env.DATABASE_URL ||
     `postgresql://${process.env.PG_USER}:${process.env.PG_PASSWORD}@${process.env.PG_HOST}:${process.env.PG_PORT}/${process.env.PG_DATABASE}`,
-  ssl: process.env.DATABASE_URL ? true : false, //uncomment this when you want to run local
-  //ssl: { rejectUnauthorized: false }, //Turn this on when deploy
+  //ssl: process.env.DATABASE_URL ? true : false, //uncomment this when you want to run local
+  ssl: { rejectUnauthorized: false }, //Turn this on when deploy
 });
 
 /*

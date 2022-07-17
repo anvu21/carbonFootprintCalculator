@@ -25,7 +25,7 @@ SQL Section:
 \q to quit sql
 heroku pg:psql -a lehigh-fcf (To go into database)
 cat database.sql | heroku pg:psql -a lehigh-fcf (catnate database.sql) into heroku database)
-
+cat recipe_index.sql | heroku pg:psql -a lehigh-fcf
 CREATE DATABASE FCF;
 
 DROP TABLE IF EXISTS food;
@@ -43,7 +43,7 @@ CREATE TABLE "recipe"(
     "uom" VARCHAR(255) NOT NULL
 );
 
-Create TABLE "recipe_index"(
+CREATE TABLE "recipe_index"(
     "recipe_id" SERIAL PRIMARY KEY,
     "name" VARCHAR(255) UNIQUE,
     "serving" decimal NOT NULL,

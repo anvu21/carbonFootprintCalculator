@@ -1,4 +1,4 @@
-Create TABLE "recipe_index"(
+CREATE TABLE "recipee"(
     "recipe_id" SERIAL PRIMARY KEY,
     "name" VARCHAR(255) UNIQUE,
     "serving" decimal NOT NULL,
