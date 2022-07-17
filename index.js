@@ -114,7 +114,7 @@ app.get("/recipe/:id", async(req,res)=> {
   try {
 
     const {id}=req.params;
-    const getFood =await pool.query("Select r.food, r.quantity, r.uom, f.density, f.carbon FROM recipe_index AS Re JOIN recipe AS r On Re.recipe_id = r.recipe_id Join food as f On f.food = r.food Where Re.recipe_id=$1",[id])
+    const getFood =await pool.query("Select Re.serving,r.food, r.quantity, r.uom, f.density, f.carbon FROM recipe_index AS Re JOIN recipe AS r On Re.recipe_id = r.recipe_id Join food as f On f.food = r.food Where Re.recipe_id=$1",[id])
     //console.log(req.params)
     console.log(getFood.rows)
     res.json(getFood.rows)
@@ -129,6 +129,15 @@ app.get("/recipe/:id", async(req,res)=> {
 app.get("/food", async (req, res) => {
     try {
       const allTodos = await pool.query("SELECT * FROM food");
+      res.json(allTodos.rows);
+    } catch (err) {
+      console.error(err.message);
+    }
+  });
+
+  app.get("/todos", async (req, res) => {
+    try {
+      const allTodos = await pool.query("SELECT food.food FROM food");
       res.json(allTodos.rows);
     } catch (err) {
       console.error(err.message);

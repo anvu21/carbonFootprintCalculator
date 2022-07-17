@@ -162,7 +162,7 @@ function SearchBarRecipe({ placeholder, data }) {
               })
               .map((value) => (
                 <tr key={value.id}>
-                  <td>{value.recipe}</td> {/* was value.name */}
+                  <td>{value.name}</td> 
                   <td>{value.serving}</td>
                   <td>{value.location}</td>
                   <td>

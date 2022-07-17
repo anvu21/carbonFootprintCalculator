@@ -1,7 +1,8 @@
 import React, { Fragment, useState } from "react";
 import "./InputFood.css";
 import ListRecipe from "../components/ListRecipe";
-
+import TextField from '@mui/material/TextField';
+import Autocomplete from '@mui/material/Autocomplete';
 const InputRecipe = () => {
   const [inputFields, setInputFields] = useState([
     {
@@ -14,18 +15,50 @@ const InputRecipe = () => {
     },
   ]);
   const { recipe, location, food, serving, quantity, uom } = inputFields;
+  const options =[];
+  
+  const [value, setValue] = React.useState(options[0]);
+  const [inputValue, setInputValue] = React.useState('');
+  
 
+  //on load to load the list of food from food table
+  window.onload = async function() {
+      console.log("jsonData");
+      
+        try {
+          const response = await fetch("/todos");
+          const jsonData = await response.json();
+          console.log("jsonData");
+          console.log(jsonData);
+          //console.log(jsonData[0].food);
+          for (let i = 0; i < jsonData.length; i++){
+            console.log(jsonData[i].food);
+            options.push(jsonData[i].food)
+          }
+          
+          
+          console.log(options)
+
+          //setTodos(options);
+        } catch (err) {
+          console.error(err.message);
+        }
+      
+  }
+  
+
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     const test = {};
     test.b = [];
     for (let i = 0; i < inputFields.length; i++) {
       inputFields[i].recipe = inputFields[0].recipe;
-      console.log(inputFields[i].recipe);
-      console.log(inputFields[0].recipe);
+      //console.log(inputFields[i].recipe);
+      //console.log(inputFields[0].recipe);
       inputFields[i].serving = inputFields[0].serving;
-      console.log(inputFields[i].serving);
-      console.log(inputFields[0].serving);
+      //console.log(inputFields[i].serving);
+      //console.log(inputFields[0].serving);
     }
     for (let i = 0; i < inputFields.length; i++) {
       test.b.push(inputFields[0].recipe);
@@ -33,8 +66,8 @@ const InputRecipe = () => {
     const body = { recipe, food, location, serving, quantity, uom };
 
     //console.log("test",JSON.stringify(test));
-    console.log("InputFields", inputFields);
-    console.log("InputFields", JSON.stringify(inputFields));
+    //console.log("InputFields", inputFields);
+    //console.log("InputFields", JSON.stringify(inputFields));
 
     try {
       //const body = { recipe, food,quantity,uom };
@@ -90,6 +123,7 @@ const InputRecipe = () => {
 
   return (
     <Fragment>
+        
       <h1 className="title">Add Recipes</h1>
 
       <form onSubmit={handleSubmit}>
@@ -140,7 +174,7 @@ const InputRecipe = () => {
             {inputFields.map((inputFields, index) => (
               <div key={index}>
                 <div className="inputfield">
-                  <input
+                <input
                     type="text"
                     name="food"
                     //value={food}

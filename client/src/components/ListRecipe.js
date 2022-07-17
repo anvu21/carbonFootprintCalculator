@@ -10,7 +10,7 @@ const ListRecipe = () => {
 
   const deleteRecipe = async (id) => {
     try {
-      console.log(id);
+      //console.log(id);
       const deleteRecipe = await fetch(`/recipe/${id}`, {
         method: "DELETE",
       });
@@ -25,8 +25,8 @@ const ListRecipe = () => {
     try {
       const response = await fetch("/recipe");
       const jsonData = await response.json();
-      console.log("test");
-      console.log(jsonData);
+      //console.log("test");
+      //console.log(jsonData);
       setrecipe(jsonData);
     } catch (err) {
       console.error(err.message);
@@ -37,7 +37,7 @@ const ListRecipe = () => {
     getrecipe();
   }, []);
 
-  console.log(recipe);
+  //console.log(recipe);
 
   return (
     <Fragment className="contents">
@@ -59,7 +59,7 @@ const ListRecipe = () => {
             //testing
             recipe.map((value) => (
               <tr key={value.recipe_id}>
-                <td>{value.recipe}</td>
+                <td>{value.name}</td>
                 {/* <td>{value.name}</td> */}
                 <td>{value.serving}</td>
                 <td>{value.location}</td>

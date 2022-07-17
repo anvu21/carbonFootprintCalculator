@@ -5,7 +5,8 @@ import testing from "./testing.json";
 const CarbonCalculator = ({ value }) => {
   const [descrition, setDescription] = useState([]);
   const [recipe_id, setValue] = useState(value.recipe_id);
-
+  //var totalCarbon = new Array();
+  var totalCarbon= 0
   //edit description function
 
   const updateDescription = async (id) => {
@@ -31,37 +32,42 @@ const CarbonCalculator = ({ value }) => {
   // let targetUom = testing.map((testing) => testing.uom);
   // let targetDensity = testing.map((testing) => testing.density);
   // let targetCarbon = testing.map((testing) => testing.carbon);
-
-  // function recipeCalc() {
-  //   var index = 0;
-  //   var carbonTotal = 0;
-  //   while (index < testing.length) {
-  //     if (targetUom[index] === "lbs") {
-  //       carbonTotal += targetQuantity[index] * 0.453592 * targetCarbon[index];
-  //     } else if (targetUom[index] === "g") {
-  //       carbonTotal += (targetQuantity[index] / 1000) * targetCarbon[index];
-  //     } else if (targetUom[index] === "oz") {
-  //       carbonTotal += targetQuantity[index] * 0.02835 * targetCarbon[index];
-  //     } else if (targetUom[index] === "cups") {
-  //       carbonTotal +=
-  //         ((targetQuantity[index] * targetDensity[index]) / 4.226753) *
-  //         targetCarbon[index];
-  //     } else if (targetUom[index] === "tbsp") {
-  //       carbonTotal +=
-  //         ((targetQuantity[index] * targetDensity[index]) / 67.628045) *
-  //         targetCarbon[index];
-  //     } else if (targetUom[index] === "tsp") {
-  //       carbonTotal +=
-  //         ((targetQuantity[index] * targetDensity[index]) / 202.884136) *
-  //         targetCarbon[index];
-  //     } else {
-  //       // for kg
-  //       carbonTotal += targetQuantity[index] * targetCarbon[index];
-  //     }
-  //     index += 1;
-  //   }
-  //   return carbonTotal / targetServing[0];
-  // }
+  //descrition.carbon,descrition.uom,descrition.density,descrition.quantity
+  function Total() {
+    return totalCarbon
+  }
+   function recipeCalc(serving,carbon,uom,density,quantity) {
+     var index = 0;
+     var carbonTotal = 0.0;
+     
+       if (uom === "lbs") {
+         carbonTotal += quantity * 0.453592 * carbon;
+       } else if (uom === "g") {
+         carbonTotal += (quantity / 1000) * carbon;
+       } else if (uom === "oz") {
+         carbonTotal += quantity * 0.02835 * carbon;
+       } else if (uom === "cups") {
+         carbonTotal +=
+           ((quantity * density) / 4.226753) *
+           carbon;
+       } else if (uom === "tbsp") {
+         carbonTotal +=
+           ((quantity * density) / 67.628045) *
+           carbon;
+       } else if (uom === "tsp") {
+         carbonTotal +=
+           ((quantity * density) / 202.884136) *
+           carbon;
+       } else {
+         // for kg
+         carbonTotal += quantity * carbon;
+       }
+       
+       carbonTotal= carbonTotal/serving
+       carbonTotal=Math.round(carbonTotal * 100) / 100  
+        totalCarbon += carbonTotal
+     return carbonTotal;
+   }
 
   function carbonCategory(carbon) {
     if (carbon >= 0 && carbon <= 1.16) {
@@ -116,7 +122,7 @@ const CarbonCalculator = ({ value }) => {
             </h5> */}
 
             <div class="modal-body">
-              <table class="table mt-5 text-center">
+              <table class="table mt-1 text-center">
                 <thead>
                   <tr>
                     <th>Name</th>
@@ -124,6 +130,7 @@ const CarbonCalculator = ({ value }) => {
                     <th>UOM</th>
                     <th>Density</th>
                     <th>CO2/kg</th>
+                    <th>Carbon</th>
                     <th>Footprint</th>
                   </tr>
                 </thead>
@@ -136,9 +143,22 @@ const CarbonCalculator = ({ value }) => {
                       <td>{descrition.uom}</td>
                       <td>{descrition.density}</td>
                       <td>{descrition.carbon}</td>
+                      <td>{recipeCalc(descrition.serving,descrition.carbon,descrition.uom,descrition.density,descrition.quantity)}</td>
                       <td>{carbonCategory(descrition.carbon)}</td>
                     </tr>
+
                   ))}
+                  <tr></tr>
+          <tr>
+            <td>Totals:</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+              {totalCarbon}
+            </td>
+          </tr>
                 </tbody>
               </table>
 
