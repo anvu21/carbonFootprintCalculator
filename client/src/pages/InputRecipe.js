@@ -16,20 +16,22 @@ const InputRecipe = () => {
   ]);
   const { recipe, location, food, serving, quantity, uom } = inputFields;
   const options =[];
-  
+  const [options2, setOptions2] = React.useState('');
+
+  //const options2 =[];
   const [value, setValue] = React.useState(options[0]);
   const [inputValue, setInputValue] = React.useState('');
   
 
   //on load to load the list of food from food table
   window.onload = async function() {
-      console.log("jsonData");
+      //console.log("jsonData");
       
         try {
           const response = await fetch("/todos");
           const jsonData = await response.json();
-          console.log("jsonData");
-          console.log(jsonData);
+          //console.log("jsonData");
+          //console.log(jsonData);
           //console.log(jsonData[0].food);
           for (let i = 0; i < jsonData.length; i++){
             console.log(jsonData[i].food);
@@ -38,7 +40,7 @@ const InputRecipe = () => {
           
           
           console.log(options)
-
+          setOptions2(options)
           //setTodos(options);
         } catch (err) {
           console.error(err.message);
@@ -101,6 +103,8 @@ const InputRecipe = () => {
 
   // end of: things im testing for + form
   const handleAddFields = () => {
+    //options=options2
+    console.log("Add"+options)
     setInputFields([
       ...inputFields,
       {
@@ -112,10 +116,13 @@ const InputRecipe = () => {
         uom: "kg",
       },
     ]);
+    console.log("Add"+options)
   };
 
   const handleRemoveFields = (index) => {
     // event.preventDefault();
+    //options=options2
+    console.log("Remove"+options)
     const values = [...inputFields];
     values.splice(index, 1);
     setInputFields(values);
@@ -174,16 +181,17 @@ const InputRecipe = () => {
             {inputFields.map((inputFields, index) => (
               <div key={index}>
                 <div className="inputfield">
-                <input
-                    type="text"
-                    name="food"
-                    //value={food}
-                    placeholder="Ingredient name"
-                    //onChange={(e) => onChange(e)}
-                    value={inputFields.food}
-                    className="foodinput"
-                    onChange={(event) => handleChangeInput(index, event)}
-                  />
+                <Autocomplete
+      disablePortal
+      id="combo-box-demo"
+      name="food"
+      value={inputFields.food}
+      options={options2}
+      onChange={(event) => handleChangeInput(index, event)}
+
+      sx={{ width: 300 }}
+      renderInput={(params) => <TextField {...params} label="Ingredients" />}
+    />
                   <input
                     type="number"
                     name="quantity"
