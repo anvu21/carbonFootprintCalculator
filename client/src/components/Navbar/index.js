@@ -21,7 +21,7 @@ const Navbar = () => {
         <NavLink
           to="/"
           className="links"
-          activeStyle
+          activestyle
           style={{ textDecoration: "none" }}
         >
           View Recipes
@@ -29,7 +29,7 @@ const Navbar = () => {
         <NavLink
           to="/addrecipes"
           className="links"
-          activeStyle
+          activestyle
           style={{ textDecoration: "none" }}
         >
           Add Recipes
@@ -37,7 +37,7 @@ const Navbar = () => {
         <NavLink
           to="/viewingredients"
           className="links"
-          activeStyle
+          activestyle
           style={{ textDecoration: "none" }}
         >
           View Ingredients
@@ -45,7 +45,7 @@ const Navbar = () => {
         <NavLink
           to="/addingredients"
           className="links"
-          activeStyle
+          activestyle
           style={{ textDecoration: "none" }}
         >
           Add Ingredients

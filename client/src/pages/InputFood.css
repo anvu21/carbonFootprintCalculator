@@ -36,12 +36,47 @@
   padding: 10px;
   outline: none;
   border: 1px solid green;
-  border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 0 0 5px;
   background: rgb(222, 243, 225);
   transition: background 0.25s, box-shadow 0.25s;
   font-size: 1.2rem;
   font-style: italic;
 }
+
+.servinginput:focus {
+  background: white;
+  box-shadow: darkgreen;
+}
+
+.servinginput {
+  flex-grow: 1;
+  padding: 10px;
+  outline: none;
+  border: 1px solid green;
+  border-radius: 0 0 0 0;
+  background: rgb(222, 243, 225);
+  transition: background 0.25s, box-shadow 0.25s;
+  font-size: 1.2rem;
+  font-style: italic;
+}
+
+.locationinput:focus {
+  background: white;
+  box-shadow: darkgreen;
+}
+
+.locationinput {
+  flex-grow: 1;
+  padding: 10px;
+  outline: none;
+  border: 1px solid green;
+  border-radius: 0 5px 5px 0;
+  background: rgb(222, 243, 225);
+  transition: background 0.25s, box-shadow 0.25s;
+  font-size: 1.2rem;
+  font-style: italic;
+}
+
 
 .space {
   height: 1rem;

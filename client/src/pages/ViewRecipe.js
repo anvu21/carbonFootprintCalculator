@@ -1,4 +1,4 @@
-import ViewListFood from "../components/ViewListFood";
+import ViewListRecipe from "../components/ViewListRecipe";
 import { motion } from "framer-motion";
 // import HeaderFooter from "../components/HeaderFooter";
 
@@ -12,7 +12,7 @@ const ViewRecipe = () => {
     <div>
       {/* <HeaderFooter /> */}
       <h1 className="title">View Recipes</h1>
-      <ViewListFood /> {/* will have to change this to list of recipes*/}
+      <ViewListRecipe /> {/* will have to change this to list of recipes*/}
       {/* // </motion.div> */}
     </div>
   );

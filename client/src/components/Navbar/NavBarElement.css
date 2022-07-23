@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Fascinate&family=Kdam+Thmor+Pro&family=Source+Sans+Pro:ital,wght@0,300;1,300&display=swap");
-
+@import url("https://fonts.googleapis.com/css2?family=Fascinate&family=Kanit:wght@600&family=Kdam+Thmor+Pro&family=Source+Sans+Pro:ital,wght@0,300;1,300&display=swap");
 .fcfheader {
-  font-family: "Fascinate", cursive;
+  font-family: "Kanit", sans-serif;
   font-size: 1.9rem;
   color: black;
   text-align: center;
@@ -51,3 +51,24 @@
     color: #000000;
     text-decoration: none;
   } */
+
+/* @media only screen and (max-width: 700px) {
+  .fcfheader {
+    font-family: "Fascinate", cursive;
+    font-size: 0.9rem;
+    color: black;
+    text-align: center;
+    display: flex;
+  }
+  .links a {
+    font-family: "Source Sans Pro", sans-serif;
+    font-size: 0.1rem;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    padding: 0 1rem;
+    height: 100%;
+    cursor: pointer;
+    color: rgb(49, 49, 49);
+  }
+} */
