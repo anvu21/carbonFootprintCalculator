@@ -181,17 +181,16 @@ const InputRecipe = () => {
             {inputFields.map((inputFields, index) => (
               <div key={index}>
                 <div className="inputfield">
-                <Autocomplete
-      disablePortal
-      id="combo-box-demo"
-      name="food"
-      value={inputFields.food}
-      options={options2}
-      onChange={(event) => handleChangeInput(index, event)}
-
-      sx={{ width: 300 }}
-      renderInput={(params) => <TextField {...params} label="Ingredients" />}
-    />
+                <input
+                    type="text"
+                    name="food"
+                    //value={food}
+                    placeholder="Ingredient name"
+                    //onChange={(e) => onChange(e)}
+                    value={inputFields.food}
+                    className="foodinput"
+                    onChange={(event) => handleChangeInput(index, event)}
+                  />
                   <input
                     type="number"
                     name="quantity"
